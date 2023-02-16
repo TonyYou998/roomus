@@ -26,17 +26,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue:uuidv4,
       allowNull:false,
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_unicode_ci'
     },
     address: {
       type:DataTypes.STRING,
       defaultValue:uuidv4,
       allowNull:false,
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_unicode_ci'
     },
     rating: DataTypes.INTEGER,
     description: {
       type:DataTypes.STRING,
       defaultValue:uuidv4,
       allowNull:false,
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_unicode_ci'
     },
     hostBy: DataTypes.STRING,
     image: DataTypes.STRING,
@@ -46,6 +52,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue:uuidv4,
       allowNull:true,
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_unicode_ci'
     },
     slotAmount: DataTypes.INTEGER
   }, {
