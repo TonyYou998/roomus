@@ -1,17 +1,16 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+const {v4:uuidv4}=require('uuid');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Reservations', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue:()=>uuidv4,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
         type: Sequelize.STRING
       },
+   
       reservationDate: {
         type: Sequelize.DATE
       },
@@ -28,22 +27,34 @@ module.exports = {
         type: Sequelize.STRING
       },
       reserveBy: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        references:{
+          model:"Users",
+          key:"id",
+        }
       },
       images: {
         type: Sequelize.STRING
       },
       roomId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        references:{
+          model:"PropertyItems",
+          key:"id",
+        }
       },
       price: {
         type: Sequelize.DOUBLE
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_unicode_ci'
       },
       roomName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_unicode_ci'
       },
       createdAt: {
         allowNull: false,

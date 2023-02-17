@@ -1,31 +1,37 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+const {v4:uuidv4}=require('uuid');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('PropertyItems', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue:()=>uuidv4,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
         type: Sequelize.STRING
       },
       roomName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_unicode_ci'
       },
       price: {
         type: Sequelize.DOUBLE
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_unicode_ci'
       },
       images: {
         type: Sequelize.STRING
       },
       propertyId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        references:{
+          model:"Properties",
+          key:"id",
+        }
       },
       roomStatus: {
         type: Sequelize.BOOLEAN

@@ -1,17 +1,16 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+const {v4:uuidv4}=require('uuid');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        defaultValue:()=>uuidv4,
+        type: Sequelize.STRING
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
+   
       email: {
         type: Sequelize.STRING
       },
@@ -31,7 +30,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       fullname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        charset: 'utf8mb4',
+      collate: 'utf8mb4_unicode_ci'
       },
       createdAt: {
         allowNull: false,
