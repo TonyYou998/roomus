@@ -3,8 +3,8 @@
     "username": "root",
     "password": "1234",
     "database": "roomus_db",
-    "host": "127.0.0.1",
-    "port":"3310",
+    "host": "34.27.137.62",
+    "port":"3306",
     "dialect": "mysql"
   },
   "test": {
@@ -18,7 +18,8 @@
     "username": "root",
     "password": "1234",
     "database": "roomus_db",
-    "host": "127.0.0.1",
+    "host": " 34.27.137.62 ",
+    "port":"3306",
     "dialect": "mysql"
   }
 }

@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roomus-deployment
+  labels:
+    app: roomus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: roomus
+  template:
+    metadata:
+      labels:
+        app: roomus
+    spec:
+      containers:
+        - name: roomus
+          image: tonyyou998/roomus:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: roomus-service
+spec:
+  selector:
+    app: roomus
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roomusdb-deployment
+  labels:
+    app: roomusdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: roomusdb
+  template:
+    metadata:
+      labels:
+        app: roomusdb
+    spec:
+      containers:
+        - name: roomusdb
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "1234"
+            - name: MYSQL_DATABASE
+              value: roomus_db
+            - name: MYSQL_PASSWORD
+              value: "1234"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: roomusdb-service
+spec:
+  selector:
+    app: roomusdb
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
