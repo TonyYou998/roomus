@@ -3,5 +3,5 @@ const { userRouter } = require('./user.router');
 
 const rootRouter=express.Router();
 
-rootRouter.use("/demo",userRouter);
+rootRouter.use("/user",userRouter);
 module.exports={rootRouter};

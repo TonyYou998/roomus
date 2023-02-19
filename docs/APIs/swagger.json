@@ -1,0 +1,133 @@
+{
+    "openapi":"3.0.1",
+    "info":{
+        "title": "ROOMUS API",
+        "description": "This is an API document for RoomUs online testing site.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "tanvuu998@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers":[
+        {
+            "url":"http://localhost:3000/api/v1"
+        }
+    ],
+    "tags":[
+        {
+            "name": "user",
+            "description": "User module"
+        }
+   
+    ],
+    "paths": {
+        "/user/register": {
+            "post": {
+                "tags": ["user"],
+                "summary": "create user account",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": { "type": "string" },
+                                    "password": { "type": "string" },
+                                    "username": { "type": "string" },
+                                    "fullname": { "type": "string" },
+                                    "phone": { "type": "string" }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create new account successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": { "type": "string" },
+                                        "username": { "type": "string" },
+                                        "email": { "type": "string" },
+                                        "fullname": { "type": "string" },
+                                        "phone": { "type": "string" },
+                                        "createdAt": { "type": "string" },
+                                        "updatedAt": { "type": "string" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User info is missing"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": ["user"],
+                "summary": "login account",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": { "type": "string" },
+                                    "password": { "type": "string" }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": { "type": "string" },
+                                        "username": { "type": "string" },
+                                        "email": { "type": "string" },
+                                        "fullname": { "type": "string" },
+                                        "phone": { "type": "string" },
+                                        "createdAt": { "type": "string" },
+                                        "updatedAt": { "type": "string" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User info is missing"
+                    }
+                }
+            }
+        }
+    },
+    
+    "components":{
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+
+    
+}
