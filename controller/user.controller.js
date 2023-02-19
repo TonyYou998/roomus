@@ -11,6 +11,7 @@ const register=async (req,res)=>{
         const hashPassword=bcrypt.hashSync(password,salt);
         const newUser=await User.create({
                 id:uuidv4(),
+                role:"client",
                 email,
                 hashPassword,
                 username,
