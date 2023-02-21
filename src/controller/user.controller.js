@@ -1,5 +1,5 @@
 const bcrypt=require('bcryptjs');
-const {User}=require("../models");
+const {User}=require("../../models");
 const {v4: uuidv4} =require('uuid');
 const jwt = require("jsonwebtoken");
 const register=async (req,res)=>{
@@ -11,7 +11,7 @@ const register=async (req,res)=>{
         const hashPassword=bcrypt.hashSync(password,salt);
         const newUser=await User.create({
                 id:uuidv4(),
-                role:"client",
+                role:"Client",
                 email,
                 hashPassword,
                 username,
