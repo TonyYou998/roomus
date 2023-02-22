@@ -2,9 +2,10 @@ const jwt=require('jsonwebtoken');
 const authenticate=(req,res,next)=>{
     try {
         const token=req.header("Authorization").split(" ");
-        token=token[1];
-        console.log(token);
-        const decode=jwt.decode(token,"tanvuu998");
+        console.log(token[1]);
+        
+        
+        const decode=jwt.decode(token[1],"tanvuu998");
         if(decode){
             req.user=decode;
             next();

@@ -6,7 +6,7 @@ const register=async (req,res)=>{
 
     try{
         const {email,password,username,fullname,phone}=req.body;
-        console.log("type:",typeof(password));
+   
         const salt=bcrypt.genSaltSync(10);
         const hashPassword=bcrypt.hashSync(password,salt);
         const newUser=await User.create({
@@ -25,16 +25,16 @@ const register=async (req,res)=>{
         res.status(400).send(err);
     }
 }
-const login=(req,res)=>{
+const login=async (req,res)=>{
     const {email,password}=req.body;
     try {
-        const user=User.findOne({
+        const user=await User.findOne({
             where:{
                 email,
             }
         });
         if(user){
-            const token=jwt.sign({
+            const token= jwt.sign({
                 id:user.id,
                 email:user.email,
                 username:user.username,
