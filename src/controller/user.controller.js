@@ -2,18 +2,18 @@ const bcrypt=require('bcryptjs');
 const {User}=require("../../models");
 const {v4: uuidv4} =require('uuid');
 const jwt = require("jsonwebtoken");
+const { ROLE } = require('../utils/constants/role');
 const register=async (req,res)=>{
-
-    try{
+        try{
         const {email,password,username,fullname,phone}=req.body;
    
         const salt=bcrypt.genSaltSync(10);
         const hashPassword=bcrypt.hashSync(password,salt);
         const newUser=await User.create({
                 id:uuidv4(),
-                role:"Client",
+                role:ROLE.CLIENT,
                 email,
-                hashPassword,
+                password:hashPassword,
                 username,
                 fullname,
                 phone
@@ -33,7 +33,9 @@ const login=async (req,res)=>{
                 email,
             }
         });
-        if(user){
+        const isAuth=bcrypt.compareSync(password,user.password);
+        if(isAuth){
+
             const token= jwt.sign({
                 id:user.id,
                 email:user.email,
@@ -45,10 +47,10 @@ const login=async (req,res)=>{
             res.status(200).send(token);
         }
         else{
-            res.status(401).send("email not exist");
+            res.status(401).send("email or password is wrong");
         }
     } catch (error) {
-        console.log(error);
+  
         res.status(400).send("Bad request");
     }
 
