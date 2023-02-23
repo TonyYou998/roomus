@@ -130,16 +130,20 @@
         "/property/add-property":{
             "post": {
                 "tags": ["property"],
-                "summary": "add property no image",
+                "summary": "add property with image",
                 "requestBody": {
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
                                     "propertyName": { "type": "string" },
                                     "address": { "type": "string" },
-                                    "description":{"type":"string"}
+                                    "description":{"type":"string"},
+                                    "property-image":{
+                                        "type":"string",
+                                        "format":"binary"
+                                    }
 
                                 }
                             }

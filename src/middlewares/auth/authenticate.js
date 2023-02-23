@@ -2,7 +2,7 @@ const jwt=require('jsonwebtoken');
 const authenticate=(req,res,next)=>{
     try {
         const token=req.header("Authorization").split(" ");
-        console.log(token[1]);
+    
         
         
         const decode=jwt.decode(token[1],"tanvuu998");
@@ -15,7 +15,7 @@ const authenticate=(req,res,next)=>{
         }
 
     } catch (error) {
-        res.status(503).send(error);
+        res.status(401).send("this token is invalid");
     }
 
 }

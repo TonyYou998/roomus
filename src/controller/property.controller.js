@@ -3,13 +3,22 @@ const {Property} = require("../../models");
 
 const addProperty=async (req,res)=>{
     try {
-        const {propertyName,address,description}=req.body;
-        
+        const formData=new FormData();
+        for(const key in req.body){
+            formData.append(key,req.body[key]);
+        }
+        const propertyName=formData.get("propertyName");
+        const address=formData.get("address");
+        const description=formData.get("description");
+
+        const {filename}=req.file;
+
         const property=await Property.create({
             id:uuidv4(),
             propertyName,
             address,
-            description
+            description,
+            image:`http://34.171.191.196:3000/public/images/property/${filename}`
            
     
         });

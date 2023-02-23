@@ -46,12 +46,10 @@ const login=async (req,res)=>{
             });
             res.status(200).send(token);
         }
-        else{
-            res.status(401).send("email or password is wrong");
-        }
+     
     } catch (error) {
   
-        res.status(400).send("Bad request");
+        res.status(401).send("email or password is wrong");
     }
 
 }
