@@ -140,9 +140,14 @@
                                     "propertyName": { "type": "string" },
                                     "address": { "type": "string" },
                                     "description":{"type":"string"},
+                                    "tagId":{"type":"string"},
                                     "property-image":{
-                                        "type":"string",
-                                        "format":"binary"
+                                        "type":"array",
+                                        "minItems":3,
+                                        "items":{
+                                            "type":"string",
+                                            "format":"binary"
+                                        }
                                     }
 
                                 }
@@ -180,6 +185,62 @@
                     }
                 ]
             }
+        },
+        "/property/add-item":{
+            "post":{
+                "tags":["property"],
+                "summary":"add item to property",
+                "requestBody":{
+                    "content":{
+                        "multipart/form-data":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "roomName": { "type": "string" },
+                                    "price": { "type": "string" },
+                                    "description":{"type":"string"},
+                                    "propertyId":{"type":"string"},
+                                    "property-image":{
+                                        "type":"string",
+                                        "format":"binary"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required":true
+                },
+                "responses":{
+                    "201": {
+                        "description": "Create successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": { "type": "string" },
+                                        "roomName": { "type": "string" },
+                                        "propertyId": { "type": "string" },
+                                        "description": { "type": "string" },
+                                        "price":{"type":"string"},
+                                        "createdAt": { "type": "string" },
+                                        "updatedAt": { "type": "string" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "502": {
+                        "description": "service unavailable"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            
+            }   
         }
     },  
     

@@ -30,9 +30,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       fullname: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(512),
         charset: 'utf8mb4',
-      collate: 'utf8mb4_unicode_ci'
+         collate: 'utf8mb4_unicode_ci'
       },
       createdAt: {
         allowNull: false,

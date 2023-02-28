@@ -15,6 +15,7 @@ const authenticate=(req,res,next)=>{
         }
 
     } catch (error) {
+        console.log(error);
         res.status(401).send("this token is invalid");
     }
 

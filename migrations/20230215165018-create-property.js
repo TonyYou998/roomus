@@ -10,6 +10,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
+      tagId:{
+        type:Sequelize.STRING,
+        allowNull:false,
+        references:{
+          model:"PropertyTags",
+          key:"id"
+
+        }
+    },
 
       propertyName: {
         type: Sequelize.STRING
@@ -35,7 +44,13 @@ module.exports = {
           key:"id"
         }
       },
-      image: {
+      image1: {
+        type: Sequelize.STRING
+      },
+      image2: {
+        type: Sequelize.STRING
+      },
+      image3: {
         type: Sequelize.STRING
       },
       long: {

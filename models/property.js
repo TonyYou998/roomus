@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({User,PropertyItem}) {
+    static associate({User,PropertyItem,PropertyTag}) {
       // define association here
       this.belongsTo(User,{
         foreignKey:"hostBy",
@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(PropertyItem,{
         foreignKey:"propertyId",
       });
+      this.belongsTo(PropertyTag,{
+        foreignKey:"tagId"
+      })
     }
   }
   Property.init({
@@ -27,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       primaryKey:true
 
+    },
+    tagId:{
+        type:DataTypes.STRING,
+        allowNull:false,
     },
     propertyName: {
       type: DataTypes.STRING,
@@ -51,7 +58,9 @@ module.exports = (sequelize, DataTypes) => {
       collate: 'utf8mb4_unicode_ci'
     },
     hostBy: DataTypes.STRING,
-    image: DataTypes.STRING,
+    image1: DataTypes.STRING,
+    image2:DataTypes.STRING,
+    image3:DataTypes.STRING,
     long: DataTypes.STRING,
     rat: DataTypes.STRING,
     category: {

@@ -3,9 +3,19 @@
     "username": "root",
     "password": "1234",
     "database": "roomus_db",
-    "host": "34.27.137.62",
-    "port":"3306",
-    "dialect": "mysql"
+    "host": "127.0.0.1",
+    "port": "3310",
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8mb4",
+      "collate": "utf8mb4_unicode_ci"
+    },
+    "dialectOptions": {
+      "charset": "utf8mb4",
+      "collation": "utf8mb4_unicode_ci"
+    },
+    "charset": "utf8mb4",
+    "collation": "utf8mb4_unicode_ci"
   },
   "test": {
     "username": "root",
@@ -19,7 +29,17 @@
     "password": "1234",
     "database": "roomus_db",
     "host": " 34.27.137.62 ",
-    "port":"3306",
-    "dialect": "mysql"
+    "port": "3306",
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8mb4",
+      "collate": "utf8mb4_unicode_ci"
+    },
+    "dialectOptions": {
+      "charset": "utf8mb4",
+      "collation": "utf8mb4_unicode_ci"
+    },
+    "charset": "utf8mb4",
+    "collation": "utf8mb4_unicode_ci"
   }
 }

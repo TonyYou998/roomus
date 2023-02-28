@@ -1,9 +1,10 @@
 const express=require('express');
-const { addProperty } = require('../controller/property.controller');
+const { addProperty, addPropertyItem } = require('../controller/property.controller');
 const { authenticate } = require('../middlewares/auth/authenticate');
 const { authorize } = require('../middlewares/auth/authorize');
 const { uploadImage } = require('../middlewares/upload/image');
 const { ROLE } = require('../utils/constants/role');
 const propertyRoute=express.Router();
-propertyRoute.post("/add-property",authenticate,authorize([ROLE.HOST]),uploadImage.single("property-image"),addProperty);
+propertyRoute.post("/add-property",authenticate,authorize([ROLE.HOST]),uploadImage.array("property-image",5),addProperty);
+propertyRoute.post("/add-item",authenticate,authorize([ROLE.HOST]),uploadImage.single("property-image"),addPropertyItem);
 module.exports={propertyRoute};

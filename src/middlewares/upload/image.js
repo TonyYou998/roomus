@@ -4,7 +4,7 @@ const mkdirp=require('mkdirp');
 const storage=multer.diskStorage({
 
     destination: (req,file,callback)=>{
-        console.log("run");
+      
         const made=mkdirp.sync(`./public/images/property`);
             callback(
                 null,`./public/images/property`)
