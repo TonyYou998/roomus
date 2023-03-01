@@ -106,7 +106,7 @@ const getAllTagId=async (req,res)=>{
 const getPropertyByTagId=async (req,res)=>{
     try {
         const {tagId}=req.params;
-        console.log(tagId);
+        
         const properties=await Property.findAll({
             where:{
                 tagId,
@@ -120,4 +120,20 @@ const getPropertyByTagId=async (req,res)=>{
     }
 
 }
-module.exports={addProperty,addPropertyItem,getAllTagId,getPropertyByTagId};
+const getPropertyById=async (req,res)=>{
+    try {
+        const {propertyId}=req.params;
+        
+        const property=await Property.findOne({
+            where:{
+                id:propertyId,
+            }
+        })
+        res.status(200).send(property)
+    } catch (error) {
+        console.error();
+        res.status(400).send(error);
+    }
+
+}
+module.exports={addProperty,addPropertyItem,getAllTagId,getPropertyByTagId,getPropertyById};

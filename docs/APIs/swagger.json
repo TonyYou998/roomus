@@ -414,6 +414,54 @@
                     }
                 }
             }
+        },
+        "/property/item/{propertyId}": {
+            "get": {
+                "tags": [
+                    "property"
+                ],
+                "summary": "get property by id",
+                "parameters":[ {
+                    "name": "propertyId",
+                    "in": "path",
+                    "description": " ID of the property to retrieve",
+                    "required": true,
+                    "type": "string"
+                }],
+                "produces": [
+                    "application/json"
+                  ],
+                  "description":"het property by id",
+                "responses": {
+                    "201": {
+                        "description": "Get successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "tagName": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "502": {
+                        "description": "service unavailable"
+                    }
+                }
+            }
         }
     },
     "components": {
