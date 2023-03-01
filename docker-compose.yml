@@ -1,7 +1,32 @@
-version: '3.8'
+version: "3.8"
 services:
-  mysqldb:
-    container_name: roomusdb
+  front-end:
+    image: tonyyou998/roomus-fe
+    ports:
+      - "3001:3000"
+    networks:
+      - uit
+    depends_on:
+      - roomusDb
+    deploy: 
+      restart_policy:
+          condition: on-failure
+          delay: 3s
+          max_attempts: 3
+          window: 120s
+  # backend:
+  #   image: tonyyou998/roomus-be
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - uit
+  #   deploy: 
+  #     restart_policy:
+  #         condition: on-failure
+  #         delay: 3s
+  #         max_attempts: 3
+  #         window: 120s
+  roomusDb:
     image: mysql:8.0
     restart: always
     env_file: ./.env
@@ -9,8 +34,14 @@ services:
       - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
       - MYSQL_DATABASE=$DB_NAME
     ports:
-      - $DB_LOCAL_PORT:$DB_DOCKER_PORT
+      - "3306:3306"
     volumes:
-      - db:/var/lib/mysql
+      - roomusDb:/var/lib/mysql
+    networks:
+      - uit
+
 volumes:
-  db: 
+  roomusDb:
+networks:
+  uit:
+    driver: bridge
