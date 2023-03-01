@@ -16,7 +16,19 @@ module.exports = {
          tagName: "sân bóng",
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
-       }], {});
+       },{
+        id:uuidv4(),
+         tagName: "phòng hợp",
+         createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30"
+       },
+       {
+        id:uuidv4(),
+         tagName: "studio",
+         createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30"
+       }
+      ], {});
      
   },
 

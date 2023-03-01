@@ -1,6 +1,6 @@
 {
-    "openapi":"3.0.1",
-    "info":{
+    "openapi": "3.0.1",
+    "info": {
         "title": "ROOMUS API",
         "description": "This is an API document for RoomUs online testing site.",
         "termsOfService": "http://swagger.io/terms/",
@@ -13,32 +13,32 @@
         },
         "version": "1.0.0"
     },
-    "servers":[
+    "servers": [
         {
-            "url":"http://localhost:3000/api/v1",
-            "description":"development server"
-            
+            "url": "http://localhost:3000/api/v1",
+            "description": "development server"
         },
         {
-            "url":"http://34.171.191.196:3000/api/v1",
-            "description":"production server"
+            "url": "http://34.171.191.196:3000/api/v1",
+            "description": "production server"
         }
     ],
-    "tags":[
+    "tags": [
         {
             "name": "user",
             "description": "User module"
         },
         {
-            "name":"property",
-            "description":"property module"
+            "name": "property",
+            "description": "property module"
         }
-   
     ],
     "paths": {
         "/user/register": {
             "post": {
-                "tags": ["user"],
+                "tags": [
+                    "user"
+                ],
                 "summary": "create user account",
                 "requestBody": {
                     "content": {
@@ -46,11 +46,21 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "email": { "type": "string" },
-                                    "password": { "type": "string" },
-                                    "username": { "type": "string" },
-                                    "fullname": { "type": "string" },
-                                    "phone": { "type": "string" }
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "fullname": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    }
                                 }
                             }
                         }
@@ -65,13 +75,27 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "id": { "type": "string" },
-                                        "username": { "type": "string" },
-                                        "email": { "type": "string" },
-                                        "fullname": { "type": "string" },
-                                        "phone": { "type": "string" },
-                                        "createdAt": { "type": "string" },
-                                        "updatedAt": { "type": "string" }
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "fullname": {
+                                            "type": "string"
+                                        },
+                                        "phone": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
@@ -85,7 +109,9 @@
         },
         "/user/login": {
             "post": {
-                "tags": ["user"],
+                "tags": [
+                    "user"
+                ],
                 "summary": "login account",
                 "requestBody": {
                     "content": {
@@ -93,8 +119,12 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "email": { "type": "string" },
-                                    "password": { "type": "string" }
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
                                 }
                             }
                         }
@@ -109,13 +139,27 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "id": { "type": "string" },
-                                        "username": { "type": "string" },
-                                        "email": { "type": "string" },
-                                        "fullname": { "type": "string" },
-                                        "phone": { "type": "string" },
-                                        "createdAt": { "type": "string" },
-                                        "updatedAt": { "type": "string" }
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "fullname": {
+                                            "type": "string"
+                                        },
+                                        "phone": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
@@ -127,9 +171,11 @@
                 }
             }
         },
-        "/property/add-property":{
+        "/property/add-property": {
             "post": {
-                "tags": ["property"],
+                "tags": [
+                    "property"
+                ],
                 "summary": "add property with image",
                 "requestBody": {
                     "content": {
@@ -137,19 +183,26 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "propertyName": { "type": "string" },
-                                    "address": { "type": "string" },
-                                    "description":{"type":"string"},
-                                    "tagId":{"type":"string"},
-                                    "property-image":{
-                                        "type":"array",
-                                        "minItems":3,
-                                        "items":{
-                                            "type":"string",
-                                            "format":"binary"
+                                    "propertyName": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "tagId": {
+                                        "type": "string"
+                                    },
+                                    "property-image": {
+                                        "type": "array",
+                                        "minItems": 3,
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
                                         }
                                     }
-
                                 }
                             }
                         }
@@ -164,12 +217,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "id": { "type": "string" },
-                                        "propertyName": { "type": "string" },
-                                        "address": { "type": "string" },
-                                        "description": { "type": "string" },
-                                        "createdAt": { "type": "string" },
-                                        "updatedAt": { "type": "string" }
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "propertyName": {
+                                            "type": "string"
+                                        },
+                                        "address": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
@@ -186,31 +251,41 @@
                 ]
             }
         },
-        "/property/add-item":{
-            "post":{
-                "tags":["property"],
-                "summary":"add item to property",
-                "requestBody":{
-                    "content":{
-                        "multipart/form-data":{
-                            "schema":{
-                                "type":"object",
-                                "properties":{
-                                    "roomName": { "type": "string" },
-                                    "price": { "type": "string" },
-                                    "description":{"type":"string"},
-                                    "propertyId":{"type":"string"},
-                                    "property-image":{
-                                        "type":"string",
-                                        "format":"binary"
+        "/property/add-item": {
+            "post": {
+                "tags": [
+                    "property"
+                ],
+                "summary": "add item to property",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "roomName": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "propertyId": {
+                                        "type": "string"
+                                    },
+                                    "property-image": {
+                                        "type": "string",
+                                        "format": "binary"
                                     }
                                 }
                             }
                         }
                     },
-                    "required":true
+                    "required": true
                 },
-                "responses":{
+                "responses": {
                     "201": {
                         "description": "Create successfully",
                         "content": {
@@ -218,13 +293,27 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "id": { "type": "string" },
-                                        "roomName": { "type": "string" },
-                                        "propertyId": { "type": "string" },
-                                        "description": { "type": "string" },
-                                        "price":{"type":"string"},
-                                        "createdAt": { "type": "string" },
-                                        "updatedAt": { "type": "string" }
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "roomName": {
+                                            "type": "string"
+                                        },
+                                        "propertyId": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "price": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
@@ -239,12 +328,95 @@
                         "BearerAuth": []
                     }
                 ]
-            
-            }   
+            }
+        },
+        "/property/get-tags": {
+            "get": {
+                "tags": [
+                    "property"
+                ],
+                "summary": "get property's tag",
+                "responses": {
+                    "201": {
+                        "description": "Get successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "tagName": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "502": {
+                        "description": "service unavailable"
+                    }
+                }
+            }
+        },
+        "/property/get-property-by-tagId/{tagId}": {
+            "get": {
+                "tags": [
+                    "property"
+                ],
+                "summary": "get property by tag",
+                "parameters":[ {
+                    "name": "tagId",
+                    "in": "path",
+                    "description": "Tag ID of the property to retrieve",
+                    "required": true,
+                    "type": "string"
+                }],
+                "produces": [
+                    "application/json"
+                  ],
+                  "description":"ghet property by tagid",
+                "responses": {
+                    "201": {
+                        "description": "Get successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "tagName": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "502": {
+                        "description": "service unavailable"
+                    }
+                }
+            }
         }
-    },  
-    
-    "components":{
+    },
+    "components": {
         "securitySchemes": {
             "BearerAuth": {
                 "type": "http",
@@ -253,6 +425,4 @@
             }
         }
     }
-
-    
 }

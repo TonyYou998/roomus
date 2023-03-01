@@ -1,5 +1,5 @@
 const{v4:uuidv4}=require('uuid');
-const {Property,PropertyItem} = require("../../models");
+const {Property,PropertyItem,PropertyTag} = require("../../models");
 
 
 
@@ -92,4 +92,32 @@ const addPropertyItem=async (req,res)=>{
     } 
 
 }
-module.exports={addProperty,addPropertyItem};
+const getAllTagId=async (req,res)=>{
+    
+    try {
+        const tags=await PropertyTag.findAll();
+        res.status(200).send(tags);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+
+}
+const getPropertyByTagId=async (req,res)=>{
+    try {
+        const {tagId}=req.params;
+        console.log(tagId);
+        const properties=await Property.findAll({
+            where:{
+                tagId,
+            }
+        });
+     
+        res.status(200).send(properties);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+
+}
+module.exports={addProperty,addPropertyItem,getAllTagId,getPropertyByTagId};

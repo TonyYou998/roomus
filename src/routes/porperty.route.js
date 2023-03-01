@@ -1,5 +1,5 @@
 const express=require('express');
-const { addProperty, addPropertyItem } = require('../controller/property.controller');
+const { addProperty, addPropertyItem, getAllTagId, getPropertyByTagId } = require('../controller/property.controller');
 const { authenticate } = require('../middlewares/auth/authenticate');
 const { authorize } = require('../middlewares/auth/authorize');
 const { uploadImage } = require('../middlewares/upload/image');
@@ -7,4 +7,6 @@ const { ROLE } = require('../utils/constants/role');
 const propertyRoute=express.Router();
 propertyRoute.post("/add-property",authenticate,authorize([ROLE.HOST]),uploadImage.array("property-image",5),addProperty);
 propertyRoute.post("/add-item",authenticate,authorize([ROLE.HOST]),uploadImage.single("property-image"),addPropertyItem);
+propertyRoute.get("/get-tags",getAllTagId);
+propertyRoute.get("/get-property-by-tagId/:tagId",getPropertyByTagId);
 module.exports={propertyRoute};

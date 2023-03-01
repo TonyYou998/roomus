@@ -18,7 +18,7 @@ module.exports = {
         id:uuidv4(),
         email:"tanvuu998@gmail.com",
         password:bcrypt.hashSync("1234",salt),
-         username:"tanvuu998",
+        username:"tanvuu998",
         fullname:"Tấn Vưu",
         role:"Host",
         phone:"0368510465",
