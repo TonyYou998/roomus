@@ -12,10 +12,9 @@ RUN npm install
 
 # Copy the rest of the app files to the container
 COPY . .
-# migrate db
-RUN npx sequelize-cli db:migrate
+
 # Expose port 3000
 EXPOSE 3000
 
 # Start the app
-CMD [ "npm", "start" ]
+CMD ["sh", "-c", "npm start && npx sequelize-cli db:migrate"]
