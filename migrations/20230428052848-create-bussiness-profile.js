@@ -3,37 +3,34 @@
 const {v4:uuidv4}=require('uuid');
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('BussinessProfiles', {
+   
       id: {
+        type: Sequelize.STRING,
+        defaultValue:()=>uuidv4,
         allowNull: false,
         primaryKey: true,
-        defaultValue:()=>uuidv4,
+      },
+      fullname: {
         type: Sequelize.STRING
       },
-   
       email: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING(512)
-      },
-      username: {
+      nameHost: {
         type: Sequelize.STRING
       },
-      role: {
+      address: {
         type: Sequelize.STRING
       },
-      avatar: {
+      description: {
         type: Sequelize.STRING
       },
-      phone: {
+      taxNumber: {
         type: Sequelize.STRING
       },
-      fullname: {
-        type: Sequelize.STRING(512),
-        charset: 'utf8mb4',
-         collate: 'utf8mb4_unicode_ci'
-      },
+    
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -45,6 +42,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('BussinessProfiles');
   }
 };

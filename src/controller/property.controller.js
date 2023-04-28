@@ -103,6 +103,15 @@ const getAllTagId=async (req,res)=>{
     }
 
 }
+const getAllProperty=async (req,res)=>{
+    try {
+        const properties=await Property.findAll();
+        res.status(200).send(properties);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
 const getPropertyByTagId=async (req,res)=>{
     try {
         const {tagId}=req.params;
@@ -136,4 +145,4 @@ const getPropertyById=async (req,res)=>{
     }
 
 }
-module.exports={addProperty,addPropertyItem,getAllTagId,getPropertyByTagId,getPropertyById};
+module.exports={addProperty,addPropertyItem,getAllTagId,getPropertyByTagId,getPropertyById,getAllProperty};

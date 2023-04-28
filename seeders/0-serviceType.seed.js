@@ -14,15 +14,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert('UserAccounts', [{
-        id:uuidv4(),
-        email:"tanvuu998@gmail.com",
-        password:bcrypt.hashSync("1234",salt),
-        username:"tanvuu998",
-        role:1,
+     await queryInterface.bulkInsert('ServiceTypes', [{
+        id: 1,
+        typeName: "Nhà",
+       
+        
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
        }], {});
+     
      
   },
 
@@ -33,7 +33,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('UserAccounts', null, {});
+     await queryInterface.bulkDelete('ServiceTypes', null, {});
     
   }
 };

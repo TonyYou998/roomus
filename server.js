@@ -14,7 +14,7 @@ const publicPathDir=path.join(__dirname,"./public");
 app.use("/api/v1",rootRouter);
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/public",express.static(publicPathDir));
-app.listen(3000,async ()=>{
+app.listen(3001,async ()=>{
     console.log('running on port 3000');
     try{
         await sequelize.authenticate();

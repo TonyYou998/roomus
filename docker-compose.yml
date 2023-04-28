@@ -1,23 +1,23 @@
 version: "3.8"
 services:
-  front-end:
-    image: tonyyou998/roomus-fe
-    ports:
-      - "3001:3000"
-    networks:
-      - uit
-    depends_on:
-      - roomusDb
-    deploy: 
-      restart_policy:
-          condition: on-failure
-          delay: 3s
-          max_attempts: 3
-          window: 120s
+  # front-end:
+  #   image: tonyyou998/roomus-fe
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - uit
+  #   depends_on:
+  #     - roomusDb
+  #   deploy: 
+  #     restart_policy:
+  #         condition: on-failure
+  #         delay: 3s
+  #         max_attempts: 3
+  #         window: 120s
   # backend:
   #   image: tonyyou998/roomus-be
   #   ports:
-  #     - "3000:3000"
+  #     - "3000:3001"
   #   networks:
   #     - uit
   #   deploy: 
