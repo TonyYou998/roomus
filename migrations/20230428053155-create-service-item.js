@@ -3,38 +3,38 @@
 const { v4: uuidv4 } = require("uuid");
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("PropertyItems", {
+    await queryInterface.createTable('ServiceItems', {
       id: {
+        type: Sequelize.STRING,
+        defaultValue:()=>uuidv4,
         allowNull: false,
-        defaultValue: () => uuidv4,
         primaryKey: true,
-        type: Sequelize.STRING,
       },
-      roomName: {
+      serviceId: {
         type: Sequelize.STRING,
-        charset: "utf8mb4",
-        collate: "utf8mb4_unicode_ci",
+        references:{
+          model:"Services",
+          key:"id"
+        }
+      },
+      images: {
+        type: Sequelize.STRING
+      },
+      status: {
+        type: Sequelize.STRING
       },
       price: {
         type: Sequelize.DOUBLE,
       },
       description: {
-        type: Sequelize.STRING,
-        charset: "utf8mb4",
-        collate: "utf8mb4_unicode_ci",
+        type: Sequelize.STRING
       },
-      images: {
-        type: Sequelize.STRING,
-      },
-      propertyId: {
-        type: Sequelize.STRING,
-        references: {
-          model: "Properties",
-          key: "id",
-        },
-      },
-      roomStatus: {
-        type: Sequelize.BOOLEAN,
+      itemType: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:"ItemTypes",
+          key:"id"
+        }
       },
       createdAt: {
         allowNull: false,
@@ -49,6 +49,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("PropertyItems");
-  },
+    await queryInterface.dropTable('ServiceItems');
+  }
 };

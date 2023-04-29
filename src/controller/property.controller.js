@@ -52,6 +52,52 @@ const getPropertyById = async (req, res, next) => {
   }
 };
 
+<<<<<<< HEAD
+}
+const getAllProperty=async (req,res)=>{
+    try {
+        const properties=await Property.findAll();
+        res.status(200).send(properties);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
+const getPropertyByTagId=async (req,res)=>{
+    try {
+        const {tagId}=req.params;
+        
+        const properties=await Property.findAll({
+            where:{
+                tagId,
+            }
+        });
+     
+        res.status(200).send(properties);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+
+}
+const getPropertyById=async (req,res)=>{
+    try {
+        const {propertyId}=req.params;
+        
+        const property=await Property.findOne({
+            where:{
+                id:propertyId,
+            }
+        })
+        res.status(200).send(property)
+    } catch (error) {
+        console.error();
+        res.status(400).send(error);
+    }
+
+}
+module.exports={addProperty,addPropertyItem,getAllTagId,getPropertyByTagId,getPropertyById,getAllProperty};
+=======
 module.exports = {
   addProperty,
   addPropertyItem,
@@ -59,3 +105,4 @@ module.exports = {
   getPropertyByTagId,
   getPropertyById,
 };
+>>>>>>> master

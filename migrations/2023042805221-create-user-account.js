@@ -3,12 +3,22 @@
 const { v4: uuidv4 } = require("uuid");
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable('UserAccounts', {
+    
       id: {
         type: Sequelize.STRING,
+         defaultValue:()=>uuidv4,
         allowNull: false,
         defaultValue: () => uuidv4,
         primaryKey: true,
+      },
+     
+      role: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Roles",
+          key:"id"
+        }
       },
 
       email: {
@@ -33,17 +43,9 @@ module.exports = {
         charset: "utf8mb4",
         collate: "utf8mb4_unicode_ci",
       },
-      role: {
-        type: Sequelize.STRING,
-      },
-      avatar: {
-        type: Sequelize.STRING,
-      },
-      phone: {
-        type: Sequelize.STRING,
-        unique: true,
-      },
-      user_token: { type: Sequelize.STRING },
+      
+     
+   
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -55,8 +57,9 @@ module.exports = {
         defaultValue: Sequelize.NOW,
       },
     });
+   
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users");
-  },
+    await queryInterface.dropTable('UserAccounts');
+  }
 };
