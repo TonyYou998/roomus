@@ -1,27 +1,52 @@
-const express=require('express');
-const app=express();
-const config=require('config');
-const cors=require('cors');
-const { sequelize } = require('./models');
-const { rootRouter } = require('./src/routes/root.router');
-const path=require('path');
+const express = require("express");
+const config = require("config");
+const path = require("path");
 
-app.use(express.json());
-app.use(cors(config.get('cors')));
-const swaggerDocument=require("./docs/APIs/swagger.json");
-const swaggerUI=require('swagger-ui-express');
-const publicPathDir=path.join(__dirname,"./public");
-app.use("/api/v1",rootRouter);
-app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-app.use("/public",express.static(publicPathDir));
-app.listen(3000,async ()=>{
-    console.log('running on port 3000');
-    try{
-        await sequelize.authenticate();
-        console.log("connect db success");
-    }
-    catch(err){
-        console.log("connection failed");
-        console.log(`error:${err}`);
-    }
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+const { sequelize } = require("./src/models");
+const { rootRouter } = require("./src/routes/root.router");
+
+const cors = require("cors");
+app.use(cors(config.get("cors")));
+
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
+const morgan = require("morgan");
+app.use(morgan("dev"));
+
+const helmet = require("helmet");
+app.use(helmet());
+
+const compression = require("compression");
+app.use(compression());
+
+const swaggerDocument = require("./docs/APIs/swagger.json");
+const swaggerUI = require("swagger-ui-express");
+const publicPathDir = path.join(__dirname, "./public");
+app.use("/api", rootRouter);
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use("/public", express.static(publicPathDir));
+
+// error-handler midlleware
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  res.status(status).json({
+    error:
+      err.message ||
+      `An internal error occurred. Please contact your system admin!`,
+  });
+});
+
+app.listen(PORT, async () => {
+  console.log(`Server is up on PORT ${PORT}`);
+  try {
+    await sequelize.authenticate();
+    console.log("SQL database connected!");
+  } catch (err) {
+    console.log("SQL database connection failed");
+    console.log(`ERROR: ${err.message}`);
+  }
 });

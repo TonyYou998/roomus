@@ -1,52 +1,54 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
-const {v4:uuidv4}=require('uuid');
+const { v4: uuidv4 } = require("uuid");
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('PropertyItems', {
+    await queryInterface.createTable("PropertyItems", {
       id: {
         allowNull: false,
-        defaultValue:()=>uuidv4,
+        defaultValue: () => uuidv4,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       roomName: {
         type: Sequelize.STRING,
-        charset: 'utf8mb4',
-        collate: 'utf8mb4_unicode_ci'
+        charset: "utf8mb4",
+        collate: "utf8mb4_unicode_ci",
       },
       price: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       description: {
         type: Sequelize.STRING,
-        charset: 'utf8mb4',
-        collate: 'utf8mb4_unicode_ci'
+        charset: "utf8mb4",
+        collate: "utf8mb4_unicode_ci",
       },
       images: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       propertyId: {
         type: Sequelize.STRING,
-        references:{
-          model:"Properties",
-          key:"id",
-        }
+        references: {
+          model: "Properties",
+          key: "id",
+        },
       },
       roomStatus: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('PropertyItems');
-  }
+    await queryInterface.dropTable("PropertyItems");
+  },
 };
