@@ -1,11 +1,11 @@
-const { User } = require("../models");
+const { UserAccount } = require("../models");
 const { v4: uuidv4 } = require("uuid");
 const { ROLE } = require("../utils/constants/role");
 
 const register = async (req) => {
   try {
     const { email, password, username, fullname, phone } = req.body;
-    const newUser = await User.create({
+    const newUser = await UserAccount.create({
       id: uuidv4(),
       role: ROLE.CLIENT,
       email,
@@ -14,7 +14,7 @@ const register = async (req) => {
       fullname,
       phone,
     });
-    const { token } = newUser.generateAuthToken();
+    const { token } = await newUser.generateAuthToken();
 
     return {
       user: newUser,
@@ -28,7 +28,7 @@ const register = async (req) => {
 
 const login = async (req) => {
   try {
-    const user = await User.findByCredentials(req.body);
+    const user = await UserAccount.findByCredentials(req.body);
     const { token } = await user.generateAuthToken();
     return {
       token,
