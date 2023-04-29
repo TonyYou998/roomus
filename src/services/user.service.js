@@ -29,7 +29,7 @@ const register = async (req) => {
 const login = async (req) => {
   try {
     const user = await User.findByCredentials(req.body);
-    const token = await user.generateAuthToken();
+    const { token } = await user.generateAuthToken();
     return {
       token,
     };
