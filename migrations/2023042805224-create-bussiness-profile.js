@@ -40,6 +40,20 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addColumn('BussinessProfiles', 'userId', {
+      type: Sequelize.STRING,
+      allowNull: false,
+      references: {
+        model: 'UserAccounts',
+        key: 'id',
+      },
+      unique: true,
+    });
+    await queryInterface.addConstraint('BussinessProfiles', {
+      type: 'unique',
+      fields: ['userId'],
+    });
+    
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('BussinessProfiles');
