@@ -17,7 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ServiceType.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true
+    },
     typeName: DataTypes.STRING
   }, {
     sequelize,

@@ -17,7 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ItemType.init({
-    id: DataTypes.INTEGER,
+    id:{
+      type:DataTypes.INTEGER,
+      primaryKey:true
+    },
     typeName: DataTypes.STRING,
     description: DataTypes.STRING
   }, {

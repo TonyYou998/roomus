@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Favorite.init({
-    id: DataTypes.STRING,
+    id: {
+      type:DataTypes.STRING,
+      primaryKey:true,
+    },
     userId: DataTypes.STRING,
     serviceId: DataTypes.STRING
   }, {

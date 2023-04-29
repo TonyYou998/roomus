@@ -17,7 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Schedule.init({
-    id: DataTypes.STRING,
+    id:  {
+      type:DataTypes.STRING,
+      primaryKey:true,
+    },
     time: DataTypes.DATE,
     serviceItemId: DataTypes.STRING,
     status: DataTypes.INTEGER

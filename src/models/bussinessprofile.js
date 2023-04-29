@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   BussinessProfile.init({
-    id: DataTypes.STRING,
+    id: {
+      type:DataTypes.STRING,
+      primaryKey:true,
+    },
     fullname: DataTypes.STRING,
     email: DataTypes.STRING,
     nameHost: DataTypes.STRING,
