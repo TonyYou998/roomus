@@ -1,8 +1,11 @@
-const express=require('express');
-const { register, login } = require('../controller/user.controller');
-const { checkExistedEmail, validateEmail } = require('../middlewares/accounts/email');
-const userRouter=express.Router();
+const userRouter = require("express").Router();
+const { register, login } = require("../controller/user.controller");
+const {
+  validateSignup,
+  validateLogin,
+} = require("../middlewares/validation/user");
 
-userRouter.post("/register",validateEmail,checkExistedEmail,register);
-userRouter.post("/login",validateEmail,login);
-module.exports={userRouter};
+userRouter.post("/register", validateSignup, register);
+userRouter.post("/login", validateLogin, login);
+
+module.exports = { userRouter };
