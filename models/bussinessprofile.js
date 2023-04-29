@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.belongsTo(UserAccount,{
         foreignKey:"userId",
-      })
+      });
       
     }
   }
@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     nameHost: DataTypes.STRING,
     address: DataTypes.STRING,
     description: DataTypes.STRING,
-    taxNumber: DataTypes.STRING
+    taxNumber: DataTypes.STRING,
+    userId:DataTypes.STRING
   }, {
     sequelize,
     modelName: 'BussinessProfile',
