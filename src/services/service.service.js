@@ -19,5 +19,14 @@ const addService=async (request)=>{
     }
 
 }
+const getServices=async ()=>{
+        try {
+            const services=await Service.findAll();
+            return services;
+        } catch (error) {
+            throw error;
+        }
 
-module.exports={addService};
+}
+
+module.exports={addService,getServices};
