@@ -10,9 +10,18 @@ const addService=async (req,res,next)=>{
          const dto=await serviceService.addService(request);
         res.status(201).send(dto);
     } catch (error) {
-        console.log(error);
+        
       next(error);
     }
 
 }
-module.exports={addService};
+const getServiceItems=async (req,res,next)=>{
+    try {
+        const {serviceId}=req.params;
+        const dto=await serviceService.getServiceItemsByServiceId(serviceId);
+        return res.status(200).send(dto);
+    } catch (error) {
+        next(error);
+    }
+}
+module.exports={addService,getServiceItems};

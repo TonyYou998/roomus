@@ -1,4 +1,4 @@
-const {Service}=require("../models");
+const {Service,ServiceItem}=require("../models");
 const { v4: uuidv4 } = require("uuid");
 const addService=async (request)=>{
     const {serviceName,bussinessId,image,serviceType,description,address}=request;
@@ -19,5 +19,19 @@ const addService=async (request)=>{
     }
 
 }
+const getServiceItemsByServiceId= async(serviceId)=>{
+    try {
+       
+        const serviceItems=await ServiceItem.findAll({
+            where:{
+                serviceId,
+            }
+        });
+        return serviceItems;
+    } catch (error) {
+        throw error;
+    }
 
-module.exports={addService};
+}
+
+module.exports={addService,getServiceItemsByServiceId};
