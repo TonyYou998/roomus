@@ -1,6 +1,20 @@
+const service = require("../services/service.service");
 const serviceService=require("../services/service.service");
 const {validationResult}=require('express-validator');
 const HttpError = require("../utils/error");
+
+const getServiceByBusinessId = async (req, res, next) => {
+  try {
+    const services = await service.getServiceByBusinessId(req);
+    res.status(201).json({
+      services,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 const addService=async (req,res,next)=>{
     try {
           
@@ -24,7 +38,6 @@ const getServiceItems=async (req,res,next)=>{
         next(error);
     }
 }
-module.exports={addService,getServiceItems};
 const addServiceItem=async (req,res,next)=>{
     try {
         const errors=validationResult(req);
@@ -37,7 +50,6 @@ const addServiceItem=async (req,res,next)=>{
     }
 
 }
-
 const getServices=async (req,res,next)=>{
     try {
           
@@ -50,4 +62,5 @@ const getServices=async (req,res,next)=>{
     }
 
 }
-module.exports={addService,getServices,addServiceItem,getServiceItems};
+
+module.exports={addService,getServices,addServiceItem,getServiceItems,getServiceByBusinessId};
