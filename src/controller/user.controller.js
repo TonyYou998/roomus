@@ -19,8 +19,13 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const { token } = await service.login(req);
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      throw new HttpError(`Invalid username/email or password passed!`, 422);
+
+    const { user, token } = await service.login(req);
     res.json({
+      user,
       token,
     });
   } catch (error) {
