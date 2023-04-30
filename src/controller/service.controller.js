@@ -1,8 +1,8 @@
 const service = require("../services/service.service");
 
-const getServices = async (req, res, next) => {
+const getServiceByBusinessId = async (req, res, next) => {
   try {
-    const services = await service.getServices(req);
+    const services = await service.getServiceByBusinessId(req);
     res.status(201).json({
       services,
     });
@@ -10,4 +10,4 @@ const getServices = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { getServices };
+module.exports = { getServiceByBusinessId };
