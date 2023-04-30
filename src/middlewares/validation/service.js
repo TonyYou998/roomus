@@ -7,4 +7,11 @@ const validateAddService=[
     check("description").notEmpty(),
     check("address").notEmpty(),
 ];
-module.exports={validateAddService};
+const validateAddServiceItem=[
+    check("serviceId").notEmpty(),
+    check("images").notEmpty(),
+    check("price").notEmpty(),
+    check("description").notEmpty(),
+    check("itemType").notEmpty(),
+];
+module.exports={validateAddService,validateAddServiceItem};
