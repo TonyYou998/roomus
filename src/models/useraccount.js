@@ -45,7 +45,6 @@ module.exports = (sequelize, DataTypes) => {
         const isMatched = await bcrypt.compare(password, user.password);
         if (!isMatched)
           throw Error(`Your email/ username or password is incorrect!`);
-
         return user;
       } catch (error) {
         throw error;

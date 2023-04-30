@@ -14,19 +14,16 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-       await queryInterface.bulkInsert('BussinessProfiles', [{
-        id: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
-        fullname: "ROOMUS",
-        email: "roomus@gmail.com",
-        nameHost: "roomus",
-        address: "VNU CAMPUS",
-        description: "test",
-        taxNumber: "113 911 115",
-        userId:"8e8bc057-51d5-480d-9bde-5ceeca669aa9",
+     await queryInterface.bulkInsert('Schedules', [{
+        id: uuidv4(),
+        time: "2021-09-11 07:25:30",
+        serviceItemId: 1,
+        status: 1,
         
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
        }], {});
+     
      
   },
 
@@ -37,7 +34,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('BussinessProfiles', null, {});
+     await queryInterface.bulkDelete('Schedules', null, {});
     
   }
 };

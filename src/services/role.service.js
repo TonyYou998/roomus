@@ -2,7 +2,7 @@ const { Role } = require("../models");
 
 const addRole = async (req) => {
   try {
-    const newRole = new Role.create(req.body);
+    const newRole = await Role.create(req.body);
     return newRole;
   } catch (error) {
     error.status = error.status || 400;

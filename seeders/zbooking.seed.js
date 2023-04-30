@@ -14,19 +14,19 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-       await queryInterface.bulkInsert('BussinessProfiles', [{
-        id: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
-        fullname: "ROOMUS",
-        email: "roomus@gmail.com",
-        nameHost: "roomus",
-        address: "VNU CAMPUS",
-        description: "test",
-        taxNumber: "113 911 115",
-        userId:"8e8bc057-51d5-480d-9bde-5ceeca669aa9",
+     await queryInterface.bulkInsert('Bookings', [{
+        id: uuidv4(),
+        status: "đã đặt",
+    accountId: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
+    serviceItemId: 1,
+    bookingTime: "2021-09-11 07:25:30",
+    checkinDay: "2021-09-11 07:25:30",
+    checkoutDay: "2021-09-11 07:25:30",
         
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
        }], {});
+       
      
   },
 
@@ -37,7 +37,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('BussinessProfiles', null, {});
+     await queryInterface.bulkDelete('Bookings', null, {});
     
   }
 };

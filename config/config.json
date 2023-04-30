@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Test@123",
-    "database": "roomus_db",
-    "host": "127.0.0.1",
+    "username": "sql12615003",
+    "password": "5hQ18LASbm",
+    "database": "sql12615003",
+    "host": "sql12.freemysqlhosting.net",
     "port": "3306",
     "dialect": "mysql",
     "define": {
@@ -18,17 +18,17 @@
     "collation": "utf8mb4_unicode_ci"
   },
   "test": {
-    "username": "root",
-    "password": "1234",
-    "database": "roomus_db",
-    "host": "127.0.0.1",
+    "username": "sql12615003",
+    "password": "5hQ18LASbm",
+    "database": "sql12615003",
+    "host": "sql12.freemysqlhosting.net",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "1234",
-    "database": "roomus_db",
-    "host": " 34.27.137.62 ",
+    "username": "sql12615003",
+    "password": "5hQ18LASbm",
+    "database": "sql12615003",
+    "host": "sql12.freemysqlhosting.net",
     "port": "3306",
     "dialect": "mysql",
     "define": {
