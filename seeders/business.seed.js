@@ -14,18 +14,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert('BussinessProfiles', [{
-        id: uuidv4(),
-        fullname: "ROOMUS",
-        email: "roomus@gmail.com",
-        nameHost: "roomus",
-        address: "VNU CAMPUS",
-        description: "test",
-        taxNumber: "113 911 115",
-        
-         createdAt: "2021-09-11 07:25:30",
-          updatedAt: "2021-09-11 07:25:30"
-       }], {});
+
        await queryInterface.bulkInsert('BussinessProfiles', [{
         id: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
         fullname: "ROOMUS",
@@ -34,6 +23,7 @@ module.exports = {
         address: "VNU CAMPUS",
         description: "test",
         taxNumber: "113 911 115",
+        userId:"8e8bc057-51d5-480d-9bde-5ceeca669aa9",
         
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
