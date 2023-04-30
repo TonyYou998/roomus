@@ -26,7 +26,7 @@ app.use(compression());
 const swaggerDocument = require("./docs/APIs/swagger.json");
 const swaggerUI = require("swagger-ui-express");
 const publicPathDir = path.join(__dirname, "./public");
-app.use("/api", rootRouter);
+app.use("/api/v1", rootRouter);
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/public", express.static(publicPathDir));
 
