@@ -14,7 +14,7 @@ const register = async (req) => {
       fullname,
       phone,
     });
-    const { token } = newUser.generateAuthToken();
+    const { token } = await newUser.generateAuthToken();
 
     return {
       user: newUser,
