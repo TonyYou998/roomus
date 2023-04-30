@@ -1,0 +1,12 @@
+{
+  "env": {
+    "DB_HOST": "localhost",
+    "DB_USER": "root",
+    "DB_PASSWORD": "",
+    "DB_NAME": "roomus_db",
+    "DB_LOCAL_PORT": 3310,
+    "DB_DOCKER_PORT": 3306,
+    "JWT_KEY": "vh5iz1VsJeciZ8TA",
+    "NODE_ENV": ""
+  }
+}

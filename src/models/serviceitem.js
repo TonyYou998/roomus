@@ -26,7 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ServiceItem.init({
-    id: DataTypes.STRING,
+    id: {
+      type:DataTypes.STRING,
+      primaryKey:true,
+    },
     serviceId: DataTypes.STRING,
     images: DataTypes.STRING,
     status: DataTypes.STRING,

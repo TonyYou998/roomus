@@ -14,7 +14,6 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
- 
        await queryInterface.bulkInsert('BussinessProfiles', [{
         id: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
         fullname: "ROOMUS",

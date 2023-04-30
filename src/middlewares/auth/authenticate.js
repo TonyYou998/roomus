@@ -1,23 +1,21 @@
-const jwt=require('jsonwebtoken');
-const authenticate=(req,res,next)=>{
-    try {
-        const token=req.header("Authorization").split(" ");
-    
-        
-        
-        const decode=jwt.decode(token[1],"tanvuu998");
-        if(decode){
-            req.user=decode;
-            next();
-        }
-        else{
-            res.status(401).send("token is required");
-        }
-
-    } catch (error) {
-        console.log(error);
-        res.status(401).send("this token is invalid");
+const jwt = require("jsonwebtoken");
+const User = require("../../models/useraccount");
+const authenticate = async (req, res, next) => {
+  try {
+    if (!req.header("Authorization")) {
+      throw new Error(`You are not authenticated!`);
     }
-
-}
-module.exports={authenticate};
+    const token = req.header("Authorization").replace("Bearer", "");
+    const decode = await jwt.verify(token, process.env.JWT_KEY);
+    const user = await User.findOne({ where: { id: decode.id } });
+    if (!user) throw new Error(`Your session has expired. Please login again`);
+    req.user = user;
+    req.token = token;
+    next();
+  } catch (error) {
+    console.log(error);
+    error.status = error.status || 401;
+    next(error);
+  }
+};
+module.exports = { authenticate };
