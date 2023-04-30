@@ -12,10 +12,9 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-<<<<<<< HEAD
     */
      await queryInterface.bulkInsert('UserAccounts', [{
-        id:uuidv4(),
+        id:"8e8bc057-51d5-480d-9bde-5ceeca669aa9",
         email:"tanvuu998@gmail.com",
         password:bcrypt.hashSync("1234",salt),
         username:"tanvuu998",
@@ -24,26 +23,6 @@ module.exports = {
           updatedAt: "2021-09-11 07:25:30"
        }], {});
      
-=======
-     */
-    await queryInterface.bulkInsert(
-      "Users",
-      [
-        {
-          id: uuidv4(),
-          email: "tanvuu998@gmail.com",
-          password: bcrypt.hashSync("1234", salt),
-          username: "tanvuu998",
-          fullname: "Tấn Vưu",
-          role: "Host",
-          phone: "0368510465",
-          createdAt: "2021-09-11 07:25:30",
-          updatedAt: "2021-09-11 07:25:30",
-        },
-      ],
-      {}
-    );
->>>>>>> master
   },
 
   async down(queryInterface, Sequelize) {
@@ -53,13 +32,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-<<<<<<< HEAD
      await queryInterface.bulkDelete('UserAccounts', null, {});
     
   }
 };
-=======
-    await queryInterface.bulkDelete("PropertyTags", null, {});
-  },
-};
->>>>>>> master
