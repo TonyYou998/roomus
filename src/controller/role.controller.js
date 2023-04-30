@@ -18,9 +18,9 @@ const addRole = async (req, res, next) => {
 const getRoleById = async (req, res, next) => {
   try {
     if (!req.params.id) throw new HttpError(`Require roleId!`, 422);
-    const newRole = await service.getRoleById(req);
+    const role = await service.getRoleById(req);
     res.status(200).json({
-      role: newRole,
+      role: role,
     });
   } catch (error) {
     next(error);
