@@ -15,4 +15,16 @@ const addService=async (req,res,next)=>{
     }
 
 }
-module.exports={addService};
+const addServiceItem=async (req,res,next)=>{
+    try {
+        const errors=validationResult(req);
+        if (!errors.isEmpty()) throw new HttpError(`Invalid inputs passed!`, 422);
+        const request=req.body;
+        const dto=await serviceService.addServiceItem(request);
+        res.status(201).send(dto);
+    } catch (error) {
+        next(error);
+    }
+
+}
+module.exports={addService,addServiceItem};

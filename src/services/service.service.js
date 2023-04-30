@@ -1,4 +1,4 @@
-const {Service}=require("../models");
+const {Service,ServiceItem}=require("../models");
 const { v4: uuidv4 } = require("uuid");
 const addService=async (request)=>{
     const {serviceName,bussinessId,image,serviceType,description,address}=request;
@@ -20,4 +20,25 @@ const addService=async (request)=>{
 
 }
 
-module.exports={addService};
+const addServiceItem=async (request)=>{
+    const {serviceId,images,price,description,itemType}=request;
+    try {
+        const newServiceItem=await ServiceItem.create({
+            id:uuidv4(),
+            serviceId,
+            images,
+            status:"EMPTY",
+            price,
+            description,
+            itemType,
+        });
+        return newServiceItem;
+    } catch (error) {
+        throw error;
+    }
+    
+
+
+}
+
+module.exports={addService,addServiceItem};
