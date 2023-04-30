@@ -19,6 +19,14 @@ const addService=async (request)=>{
     }
 
 }
+const getServices=async ()=>{
+        try {
+            const services=await Service.findAll();
+            return services;
+        } catch (error) {
+            throw error;
+        }
+    }
 
 const addServiceItem=async (request)=>{
     const {serviceId,images,price,description,itemType}=request;
@@ -41,4 +49,8 @@ const addServiceItem=async (request)=>{
 
 }
 
-module.exports={addService,addServiceItem};
+
+
+module.exports={addService,addServiceItem,getServices};
+
+
