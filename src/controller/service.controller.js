@@ -15,6 +15,16 @@ const addService=async (req,res,next)=>{
     }
 
 }
+const getServiceItems=async (req,res,next)=>{
+    try {
+        const {serviceId}=req.params;
+        const dto=await serviceService.getServiceItemsByServiceId(serviceId);
+        return res.status(200).send(dto);
+    } catch (error) {
+        next(error);
+    }
+}
+module.exports={addService,getServiceItems};
 const addServiceItem=async (req,res,next)=>{
     try {
         const errors=validationResult(req);
@@ -40,4 +50,4 @@ const getServices=async (req,res,next)=>{
     }
 
 }
-module.exports={addService,getServices,addServiceItem};
+module.exports={addService,getServices,addServiceItem,getServiceItems};

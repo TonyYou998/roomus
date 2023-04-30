@@ -19,6 +19,22 @@ const addService=async (request)=>{
     }
 
 }
+const getServiceItemsByServiceId= async(serviceId)=>{
+    try {
+       
+        const serviceItems=await ServiceItem.findAll({
+            where:{
+                serviceId,
+            }
+        });
+        return serviceItems;
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+module.exports={addService,getServiceItemsByServiceId};
 const getServices=async ()=>{
         try {
             const services=await Service.findAll();
