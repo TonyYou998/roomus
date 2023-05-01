@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'roomusapi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9B088D9CDC4B4471AC66922AF825407E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B18B0F97F7EC484EA16DE8F679DF659D }}
           package: .
