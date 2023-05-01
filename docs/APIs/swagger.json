@@ -15,7 +15,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/api/v1",
+            "url": "http://localhost:3001/api/v1",
             "description": "development server"
         },
         {
@@ -171,19 +171,19 @@
                 }
             }
         },
-        "/property/add-property": {
+        "/service/add-service": {
             "post": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "add property with image",
+                "summary": "add service ",
                 "requestBody": {
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "propertyName": {
+                                    "serviceName": {
                                         "type": "string"
                                     },
                                     "address": {
@@ -192,16 +192,14 @@
                                     "description": {
                                         "type": "string"
                                     },
-                                    "tagId": {
+                                    "bussinessId": {
                                         "type": "string"
                                     },
-                                    "property-image": {
-                                        "type": "array",
-                                        "minItems": 3,
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
+                                    "image": {
+                                        "type": "string"
+                                    },
+                                    "servieType":{
+                                        "type":"string"
                                     }
                                 }
                             }
@@ -220,7 +218,7 @@
                                         "id": {
                                             "type": "string"
                                         },
-                                        "propertyName": {
+                                        "serviceName": {
                                             "type": "string"
                                         },
                                         "address": {
@@ -228,6 +226,9 @@
                                         },
                                         "description": {
                                             "type": "string"
+                                        },
+                                        "servieType":{
+                                            "type":"string"
                                         },
                                         "createdAt": {
                                             "type": "string"
