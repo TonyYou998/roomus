@@ -263,9 +263,11 @@
       "get": {
         "tags": ["Role"],
         "summary": "Get specific role by Id",
-        "route parameters": {
-          "roleId": "role Id need looking up"
-        },
+        " parameters": [
+          {
+            "roleId": "role Id need looking up"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Get role by Id successfully",
@@ -309,9 +311,11 @@
       "get": {
         "tags": ["Service"],
         "summary": "Get all services of a business",
-        "route parameters": {
-          "businessId": "business Id of business needing looking up for services"
-        },
+        "route parameters": [
+          {
+            "businessId": "business Id of business needing looking up for services"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Get services of business successfully",
