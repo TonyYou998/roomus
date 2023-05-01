@@ -5,6 +5,7 @@ const { ROLE } = require("../utils/constants/role");
 const register = async (req) => {
   try {
     const { email, password, username, fullname, phone } = req.body;
+    console.log(fullname);
     const newUser = await UserAccount.create({
       id: uuidv4(),
       role: ROLE.CLIENT,
