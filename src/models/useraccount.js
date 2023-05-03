@@ -34,9 +34,13 @@ module.exports = (sequelize, DataTypes) => {
         if (!username || !password) {
           throw Error(`Email/ username and password are required to login!`);
         }
-        let user = await UserAccount.findOne({ where: { email: username } });
+        let user = await this.findOne({
+          where: { email: username },
+        });
         if (!user)
-          user = await UserAccount.findOne({ where: { username: username } });
+          user = await this.findOne({
+            where: { username: username },
+          });
         if (!user) {
           throw Error(
             `Sorry, we can't find your account with this email/ username.`
@@ -54,8 +58,8 @@ module.exports = (sequelize, DataTypes) => {
     async generateAuthToken() {
       const user = this;
       const token = jwt.sign(
-        { id: user.id, email: user.email, password: user.password },
-        process.env.JWT_KEY,
+        { id: user.id, email: user.email },
+        "vh5iz1VsJeciZ8TA",
         {
           expiresIn: 3600 * 24,
         }
@@ -75,6 +79,11 @@ module.exports = (sequelize, DataTypes) => {
       role: DataTypes.INTEGER,
     },
     {
+      // defaultScope: {
+      //   attributes: {
+      //     exclude: ["password"],
+      //   },
+      // },
       sequelize,
       modelName: "UserAccount",
     }

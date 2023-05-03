@@ -1,5 +1,6 @@
 const service = require("../services/user.service");
 const { validationResult } = require("express-validator");
+const HttpError = require("../utils/error");
 
 const register = async (req, res, next) => {
   try {
