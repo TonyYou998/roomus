@@ -58,8 +58,8 @@ module.exports = (sequelize, DataTypes) => {
     async generateAuthToken() {
       const user = this;
       const token = jwt.sign(
-        { id: user.id, email: user.email, password: user.password },
-        process.env.JWT_KEY,
+        { id: user.id, email: user.email },
+        "vh5iz1VsJeciZ8TA",
         {
           expiresIn: 3600 * 24,
         }

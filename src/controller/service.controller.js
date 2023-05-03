@@ -29,6 +29,18 @@ const addService=async (req,res,next)=>{
     }
 
 }
+const addServiceType=async (req,res,next)=>{
+  try {
+    const errors=validationResult(req);
+    if (!errors.isEmpty()) throw new HttpError(`Invalid inputs passed!`, 422);
+    const request =req.body;
+    const dto=await serviceService.addServiceType(request);
+    res.status(201).send(dto);
+  } catch (error) {
+    next(error);
+  }
+
+}
 const getServiceItems=async (req,res,next)=>{
     try {
         const {serviceId}=req.params;
@@ -75,4 +87,5 @@ const getDetailServiceItemById=async(req,res,next)=>{
 
 }
 
-module.exports={addService,getServices,addServiceItem,getServiceItems,getServiceByBusinessId,getDetailServiceItemById};
+module.exports={addServiceType,addService,getServices,addServiceItem,getServiceItems,getServiceByBusinessId,getDetailServiceItemById};
+

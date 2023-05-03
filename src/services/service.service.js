@@ -1,6 +1,18 @@
 
-const {Service,ServiceItem}=require("../models");
+const {Service,ServiceItem,ServiceType}=require("../models");
 const { v4: uuidv4 } = require("uuid");
+const addServiceType=async (req)=>{
+    try {
+            const {typeName}=req;
+            const newServiceType=await ServiceType.create({
+                typeName,
+            });
+            return newServiceType;
+    } catch (error) {
+        throw error;
+    }
+
+}
 const getServiceByBusinessId = async (req) => {
     try {
       const services = await Service.findAll({
@@ -92,6 +104,6 @@ const getDetailItemById=async (id)=>{
 
 
 
-module.exports={getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId};
+module.exports={getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId,addServiceType};
 
 

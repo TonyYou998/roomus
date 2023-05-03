@@ -1,13 +1,11 @@
 const serviceRouter = require("express").Router();
 
-const { addService, addServiceItem, getServiceItems, getServiceByBusinessId, getServices, getDetailServiceItemById} = require("../controller/service.controller");
+const { addService, addServiceItem, getServiceItems, getServiceByBusinessId, getServices, addServiceType} = require("../controller/service.controller");
+const { validateAddService, validateAddServiceItem, validateAddServiceType ,} = require("../middlewares/validation/service");
 
+const { authenticate} = require("../middlewares/auth/authenticate");
+const { authorize } = require("../middlewares/auth/authorize");
 
-const {
-  validateAddService,
-  validateAddServiceItem,
-} = require("../middlewares/validation/service");
-const { authenticate } = require("../middlewares/auth/authenticate");
 
 serviceRouter.post(
   "/add-service",
@@ -20,17 +18,20 @@ serviceRouter.get(
   authenticate,
   getServiceItems
 );
-serviceRouter.get("/get-service-item-by-id/:id",getDetailServiceItemById);
+
+
+serviceRouter.post("/add-service-type",authenticate,authorize([2]),validateAddServiceType,addServiceType);
+
 serviceRouter.post(
   "/add-service-item",
   authenticate,
   validateAddServiceItem,
   addServiceItem
 );
-serviceRouter.get("/get-services", authenticate, getServices);
+serviceRouter.get("/get-services", authenticate, authorize([2]),getServices);
 serviceRouter.get(
   "/business/:businessId",
-  authenticate,
+  authenticate,authorize([2]),
   getServiceByBusinessId
 );
 
