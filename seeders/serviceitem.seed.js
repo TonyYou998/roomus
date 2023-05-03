@@ -16,7 +16,7 @@ module.exports = {
     */
      await queryInterface.bulkInsert('ServiceItems', [{
         id: 1,
-        serviceId: "61131c50-706e-4b3e-bff1-38ce4f90dead",
+        serviceId: "405a020e-b1ee-474c-8135-9b11c835f689",
         images: "hinh",
         status: true,
         price: 1000,

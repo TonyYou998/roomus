@@ -27,6 +27,32 @@ module.exports = {
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
        }], {});
+       await queryInterface.bulkInsert('BussinessProfiles', [{
+        id: "8e8bc057-51d5-480d-9bde-5ceeca669aa8",
+        fullname: "ROOMWE",
+        email: "roomwe@gmail.com",
+        nameHost: "roomwe",
+        address: "KMS CAMPUS",
+        description: "test",
+        taxNumber: "112 911 115",
+        userId:"8e8bc057-51d5-480d-9bde-5ceeca669aaa",
+        
+         createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30"
+       }], {});
+       await queryInterface.bulkInsert('BussinessProfiles', [{
+        id: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
+        fullname: "ROOMYOU",
+        email: "roomyou@gmail.com",
+        nameHost: "roomyou",
+        address: "NEXT CAMPUS",
+        description: "test",
+        taxNumber: "113 111 115",
+        userId:"ce8bc057-51d5-480d-9bde-5ceeca669aaa",
+        
+         createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30"
+       }], {});
      
   },
 

@@ -1,11 +1,11 @@
-const service = require("../services/service.service");
+
 const serviceService=require("../services/service.service");
 const {validationResult}=require('express-validator');
 const HttpError = require("../utils/error");
 
 const getServiceByBusinessId = async (req, res, next) => {
   try {
-    const services = await service.getServiceByBusinessId(req);
+    const services = await serviceService.getServiceByBusinessId(req);
     res.status(201).json({
       services,
     });
@@ -52,10 +52,10 @@ const addServiceItem=async (req,res,next)=>{
 }
 const getServices=async (req,res,next)=>{
     try {
-          
+     
        
          const dto=await serviceService.getServices();
-         res.status(201).send(dto);
+         res.status(200).send(dto);
     } catch (error) {
         
       next(error);
