@@ -252,33 +252,32 @@
                 ]
             }
         },
-        "/property/add-item": {
+        "/service/add-service-item": {
             "post": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "add item to property",
+                "summary": "add item to service",
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "roomName": {
+                                    "serviceId": {
+                                        "type": "string"
+                                    },
+                                    "images": {
                                         "type": "string"
                                     },
                                     "price": {
-                                        "type": "string"
+                                        "type": "integer"
                                     },
                                     "description": {
                                         "type": "string"
                                     },
-                                    "propertyId": {
-                                        "type": "string"
-                                    },
-                                    "property-image": {
-                                        "type": "string",
-                                        "format": "binary"
+                                    "itemType": {
+                                        "type": "integer"
                                     }
                                 }
                             }
@@ -297,17 +296,20 @@
                                         "id": {
                                             "type": "string"
                                         },
-                                        "roomName": {
+                                        "serviceId": {
                                             "type": "string"
                                         },
-                                        "propertyId": {
+                                        "images": {
                                             "type": "string"
+                                        },
+                                        "price": {
+                                            "type": "integer"
                                         },
                                         "description": {
                                             "type": "string"
                                         },
-                                        "price": {
-                                            "type": "string"
+                                        "itemType": {
+                                            "type": "integer"
                                         },
                                         "createdAt": {
                                             "type": "string"
@@ -331,12 +333,12 @@
                 ]
             }
         },
-        "/property/get-tags": {
+        "/service/get-services": {
             "get": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "get property's tag",
+                "summary": "get service",
                 "responses": {
                     "201": {
                         "description": "Get successfully",

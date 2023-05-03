@@ -1,6 +1,6 @@
 const serviceRouter = require("express").Router();
-const { getServiceByBusinessId } = require("../controller/service.controller");
-const { addService, addServiceItem, getServices, getServiceItems } = require("../controller/service.controller");
+
+const { addService, addServiceItem, getServiceItems, getServiceByBusinessId, getServices} = require("../controller/service.controller");
 const { validateAddService, validateAddServiceItem ,} = require("../middlewares/validation/service");
 serviceRouter.get("/:businessId", getServiceByBusinessId);
 serviceRouter.post("/add-service",validateAddService,addService);
