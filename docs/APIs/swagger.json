@@ -370,23 +370,24 @@
                 }
             }
         },
-        "/property/get-property-by-tagId/{tagId}": {
+        "/service/get-service-item/{serviceId}": {
             "get": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "get property by tag",
+                "summary": "get service item by serviceId",
                 "parameters":[ {
-                    "name": "tagId",
+                    "name": "serviceId",
                     "in": "path",
-                    "description": "Tag ID of the property to retrieve",
+                    "description": " ID of the service to retrieve",
                     "required": true,
                     "type": "string"
                 }],
+              
                 "produces": [
                     "application/json"
                   ],
-                  "description":"ghet property by tagid",
+                  "description":"get service item by service id",
                 "responses": {
                     "201": {
                         "description": "Get successfully",
@@ -398,8 +399,23 @@
                                         "id": {
                                             "type": "string"
                                         },
-                                        "tagName": {
+                                        "serviceId": {
                                             "type": "string"
+                                        },
+                                        "images":{
+                                            "type":"string"
+                                        },
+                                        "status":{
+                                            "type":"string"
+                                        },
+                                        "price":{
+                                            "type":"double"
+                                        },
+                                        "description":{
+                                            "type":"string"
+                                        },
+                                        "itemType":{
+                                            "type":"integer"
                                         },
                                         "createdAt": {
                                             "type": "string"
