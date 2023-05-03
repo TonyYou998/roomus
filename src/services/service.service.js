@@ -45,9 +45,10 @@ const getServiceItemsByServiceId= async(serviceId)=>{
 
 }
 
-module.exports={addService,getServiceItemsByServiceId};
+
 const getServices=async ()=>{
         try {
+            console.log("run get service");
             const services=await Service.findAll();
             return services;
         } catch (error) {
@@ -78,6 +79,6 @@ const addServiceItem=async (request)=>{
 
 
 
-module.exports={addService,addServiceItem,getServices,getServiceByBusinessId};
+module.exports={addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId};
 
 

@@ -22,6 +22,25 @@ module.exports = {
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
        }], {});
+       await queryInterface.bulkInsert('UserAccounts', [{
+        id:"8e8bc057-51d5-480d-9bde-5ceeca669aaa",
+        email:"tanvuu9980@gmail.com",
+        password:bcrypt.hashSync("1234",salt),
+        username:"tanvuu9980",
+        role:1,
+         createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30"
+       }], {});
+       await queryInterface.bulkInsert('UserAccounts', [{
+        id:"ce8bc057-51d5-480d-9bde-5ceeca669aaa",
+        email:"tanvuu99800@gmail.com",
+        password:bcrypt.hashSync("1234",salt),
+        username:"tanvuu99800",
+        role:1,
+         createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30"
+       }], {});
+
      
   },
 
