@@ -1,22 +1,24 @@
 const { UserAccount } = require("../models");
 const { v4: uuidv4 } = require("uuid");
 const { ROLE } = require("../utils/constants/role");
+const bcrypt = require("bcryptjs");
 
 const register = async (req) => {
   try {
     const { email, password, username, fullname, phone } = req.body;
-    console.log(fullname);
-    const newUser = await UserAccount.create({
+    
+    let newUser = await UserAccount.create({
       id: uuidv4(),
       role: ROLE.CLIENT,
       email,
-      password: password,
+      password,
       username,
       fullname,
       phone,
     });
     const { token } = await newUser.generateAuthToken();
-
+    newUser = newUser.get();
+    delete newUser.password;
     return {
       user: newUser,
       token,
@@ -29,10 +31,12 @@ const register = async (req) => {
 
 const login = async (req) => {
   try {
-    const user = await UserAccount.findByCredentials(req.body);
+    let user = await UserAccount.findByCredentials(req.body);
     const { token } = await user.generateAuthToken();
+    user = user.get();
+    delete user.password;
     return {
-      user: user,
+      user,
       token,
     };
   } catch (error) {
