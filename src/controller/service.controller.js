@@ -14,20 +14,27 @@ const getServiceByBusinessId = async (req, res, next) => {
   }
 };
 
+const addService = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) throw new HttpError(`Invalid inputs passed!`, 422);
+    const request = req.body;
+    const dto = await serviceService.addService(request);
+    res.status(201).send(dto);
+  } catch (error) {
+    next(error);
+  }
+};
 
-const addService=async (req,res,next)=>{
-    try {
-          
-        const errors=validationResult(req);
-        if (!errors.isEmpty()) throw new HttpError(`Invalid inputs passed!`, 422);
-            const request=req.body;
-         const dto=await serviceService.addService(request);
-        res.status(201).send(dto);
-    } catch (error) {
-        
-      next(error);
-    }
-
+const searchBusinessService = async (req, res, next) => {
+  try {
+  
+    const dto = await serviceService.searchBusinessService(req);
+      res.status(200).json(dto);
+}
+catch(error){
+  next(error)
+}
 }
 const addServiceType=async (req,res,next)=>{
   try {
@@ -38,9 +45,9 @@ const addServiceType=async (req,res,next)=>{
     res.status(201).send(dto);
   } catch (error) {
     next(error);
-  }
+  }}
 
-}
+
 const getServiceItems=async (req,res,next)=>{
     try {
         const {serviceId}=req.params;
