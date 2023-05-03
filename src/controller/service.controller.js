@@ -62,5 +62,17 @@ const getServices=async (req,res,next)=>{
     }
 
 }
+const getDetailServiceItemById=async(req,res,next)=>{
+  try {
+    const {id}=req.params;
+    
+    const dto=await serviceService.getDetailItemById(id);
+    
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
 
-module.exports={addService,getServices,addServiceItem,getServiceItems,getServiceByBusinessId};
+}
+
+module.exports={addService,getServices,addServiceItem,getServiceItems,getServiceByBusinessId,getDetailServiceItemById};

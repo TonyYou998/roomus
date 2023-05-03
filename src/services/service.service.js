@@ -76,9 +76,22 @@ const addServiceItem=async (request)=>{
 
 
 }
+const getDetailItemById=async (id)=>{
+    try {
+        const item=await ServiceItem.findOne({
+            where:{
+                id,
+            }
+        });
+        return item;
+    } catch (error) {
+        throw error;
+    }
+
+}
 
 
 
-module.exports={addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId};
+module.exports={getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId};
 
 
