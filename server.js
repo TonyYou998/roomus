@@ -9,7 +9,8 @@ const { sequelize } = require("./src/models");
 const { rootRouter } = require("./src/routes/root.router");
 
 const cors = require("cors");
-app.use(cors(config.get("cors")));
+//app.use(cors(config.get("cors")));
+app.use(cors());
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -45,6 +46,7 @@ app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();
     console.log("SQL database connected!");
+
   } catch (err) {
     console.log("SQL database connection failed");
     console.log(`ERROR: ${err.message}`);
