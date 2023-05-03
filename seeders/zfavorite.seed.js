@@ -17,7 +17,7 @@ module.exports = {
      await queryInterface.bulkInsert('Favorites', [{
         id: uuidv4(),
         userId: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
-    serviceId: "61131c50-706e-4b3e-bff1-38ce4f90dead",
+    serviceId: "405a020e-b1ee-474c-8135-9b11c835f689",
          createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30"
        }], {});
