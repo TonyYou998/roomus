@@ -1,4 +1,6 @@
-const { Role } = require("../models");
+const { Role, BussinessProfile } = require("../models");
+const { v4: uuidv4 } = require("uuid");
+
 const HttpError = require("../utils/error");
 
 const addRole = async (req) => {
@@ -21,4 +23,32 @@ const getRoleById = async (req) => {
   }
 };
 
-module.exports = { addRole, getRoleById };
+const postCreateBusinessProfile = async (req) => {
+  try {
+    const { fullname, email, nameHost, address, description, taxNumber } =
+      req.body;
+    // const user = await UserAccount.findOne({ where: { id: userId } });
+    req.user.update({ role: 2 });
+    req.user.save();
+
+    const businessProfile = await BussinessProfile.create({
+      id: uuidv4(),
+      fullname,
+      email,
+      nameHost,
+      address,
+      description,
+      taxNumber,
+      userId: req.user.id,
+    });
+
+    return {
+      user: req.user,
+      businessProfile,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { addRole, getRoleById, postCreateBusinessProfile };
