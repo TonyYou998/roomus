@@ -27,7 +27,6 @@ const postCreateBusinessProfile = async (req) => {
   try {
     const { fullname, email, nameHost, address, description, taxNumber } =
       req.body;
-    // const user = await UserAccount.findOne({ where: { id: userId } });
     req.user.update({ role: 2 });
     req.user.save();
 
