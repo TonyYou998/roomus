@@ -14,4 +14,8 @@ const validateAddServiceItem=[
     check("description").notEmpty(),
     check("itemType").notEmpty(),
 ];
-module.exports={validateAddService,validateAddServiceItem};
+const validateAddServiceType=[
+    
+    check("typeName").notEmpty(),
+];
+module.exports={validateAddService,validateAddServiceItem,validateAddServiceType};

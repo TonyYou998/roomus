@@ -18,13 +18,13 @@ module.exports = {
       [
         {
           id: uuidv4(),
-          serviceName: "Nhà thổ",
-          bussinessId: "a02d620b-e09f-471d-9000-6476ad573535",
+          serviceName: "Sân Bóng BeCon",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa8",
           image: "sdasdasd",
-          serviceType: 1,
-          description: "đây là nhà thổ",
-          address: "113 Trần Duy Hưng",
-          feedback: "em tuyệt lắm",
+          serviceType: 2,
+          description: "this is description",
+          address: "215 Mai Chí Thọ",
+          feedback: "helo",
           rating: 5,
 
           createdAt: "2021-09-11 07:25:30",
@@ -37,14 +37,154 @@ module.exports = {
       "Services",
       [
         {
-          id: "61131c50-706e-4b3e-bff1-38ce4f90dead",
-          serviceName: "Nhà ma",
+          id: uuidv4(),
+          serviceName: "Phòng họp-Old Office",
           bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
           image: "sdasdasd",
           serviceType: 1,
-          description: "đây là nhà bị ám",
-          address: "115 bệnh viện chợ rẫy",
+          description: "hi",
+          address: "115 Sư Vạn Hạnh",
           feedback: "maaaaaaa",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id: uuidv4(),
+          serviceName: "Phòng họp-New Office",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
+          image: "sdasdasd",
+          serviceType: 1,
+          description: "hi",
+          address: "115 Sư Vạn Hạnh",
+          feedback: "maaaaaaa",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id: uuidv4(),
+          serviceName: "Studio Talent",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa9",
+          image: "sdasdasd",
+          serviceType: 3,
+          description: "hi",
+          address: "315 Bùi Hữu Nghĩa",
+          feedback: "pretty",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id: uuidv4(),
+          serviceName: "Studio Hitech",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
+          image: "sdasdasd",
+          serviceType: 3,
+          description: "hi",
+          address: "315 Bùi Hữu Nghĩa",
+          feedback: "pretty",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id: uuidv4(),
+          serviceName: "Sân bóng Hitech",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
+          image: "sdasdasd",
+          serviceType: 2,
+          description: "hi",
+          address: "315 Bùi Hữu Nghĩa",
+          feedback: "nice",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id: uuidv4(),
+          serviceName: "Office Hitech",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
+          image: "sdasdasd",
+          serviceType: 2,
+          description: "hi",
+          address: "315 Bùi Hữu Nghĩa",
+          feedback: "nice",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id:"405a020e-b1ee-474c-8135-9b11c835f689",
+          serviceName: "Office new Hitech",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
+          image: "sdasdasd",
+          serviceType: 2,
+          description: "hi",
+          address: "31 Bùi Hữu Nghĩa",
+          feedback: "nice",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id:"405a020e-b1ee-474c-8135-9b11c835f680",
+          serviceName: "Dancing lala ",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
+          image: "sdasdasd",
+          serviceType: 4,
+          description: "hi",
+          address: "31 Bùi Hữu Nghĩa",
+          feedback: "nice",
           rating: 1,
 
           createdAt: "2021-09-11 07:25:30",

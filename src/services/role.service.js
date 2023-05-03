@@ -1,4 +1,5 @@
 const { Role } = require("../models");
+const HttpError = require("../utils/error");
 
 const addRole = async (req) => {
   try {
@@ -13,6 +14,7 @@ const addRole = async (req) => {
 const getRoleById = async (req) => {
   try {
     const role = await Role.findOne({ id: req.params.id });
+    if (!role) throw new HttpError(`Found no role with provided Id`, 400);
     return role;
   } catch (error) {
     throw error;
