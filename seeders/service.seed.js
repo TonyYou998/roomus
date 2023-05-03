@@ -173,6 +173,26 @@ module.exports = {
       ],
       {}
     );
+    await queryInterface.bulkInsert(
+      "Services",
+      [
+        {
+          id:"405a020e-b1ee-474c-8135-9b11c835f680",
+          serviceName: "Dancing lala ",
+          bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
+          image: "sdasdasd",
+          serviceType: 4,
+          description: "hi",
+          address: "31 Bùi Hữu Nghĩa",
+          feedback: "nice",
+          rating: 1,
+
+          createdAt: "2021-09-11 07:25:30",
+          updatedAt: "2021-09-11 07:25:30",
+        },
+      ],
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
