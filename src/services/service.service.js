@@ -1,6 +1,20 @@
-const { Service, ServiceItem, BussinessProfile } = require("../models");
+
 const Sequelize = require("sequelize");
+
+const {Service,ServiceItem,ServiceType,BussinessProfile}=require("../models");
 const { v4: uuidv4 } = require("uuid");
+const addServiceType=async (req)=>{
+    try {
+            const {typeName}=req;
+            const newServiceType=await ServiceType.create({
+                typeName,
+            });
+            return newServiceType;
+    } catch (error) {
+        throw error;
+    }
+
+}
 const getServiceByBusinessId = async (req) => {
   try {
     const services = await Service.findAll({
@@ -44,14 +58,7 @@ const getServiceItemsByServiceId = async (serviceId) => {
   }
 };
 
-const getServices = async () => {
-  try {
-    const services = await Service.findAll();
-    return services;
-  } catch (error) {
-    throw error;
-  }
-};
+
 
 const searchBusinessService = async (request) => {
   try {
@@ -88,29 +95,56 @@ const searchBusinessService = async (request) => {
   }
 };
 
-const addServiceItem = async (request) => {
-  const { serviceId, images, price, description, itemType } = request;
-  try {
-    const newServiceItem = await ServiceItem.create({
-      id: uuidv4(),
-      serviceId,
-      images,
-      status: "EMPTY",
-      price,
-      description,
-      itemType,
-    });
-    return newServiceItem;
-  } catch (error) {
-    throw error;
-  }
-};
 
-module.exports = {
-  addService,
-  addServiceItem,
-  getServices,
-  getServiceByBusinessId,
-  getServiceItemsByServiceId,
-  searchBusinessService,
-};
+
+
+const getServices=async ()=>{
+        try {
+            console.log("run get service");
+            const services=await Service.findAll();
+            return services;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+const addServiceItem=async (request)=>{
+    const {serviceId,images,price,description,itemType}=request;
+    try {
+        const newServiceItem=await ServiceItem.create({
+            id:uuidv4(),
+            serviceId,
+            images,
+            status:"EMPTY",
+            price,
+            description,
+            itemType,
+        });
+        return newServiceItem;
+    } catch (error) {
+        throw error;
+    }
+    
+
+
+}
+const getDetailItemById=async (id)=>{
+    try {
+        const item=await ServiceItem.findOne({
+            where:{
+                id,
+            }
+        });
+        return item;
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+
+
+  
+  module.exports={searchBusinessService,getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId,addServiceType,};
+
+

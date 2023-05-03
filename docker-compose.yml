@@ -14,34 +14,36 @@ services:
   #         delay: 3s
   #         max_attempts: 3
   #         window: 120s
-  # backend:
-  #   image: tonyyou998/roomus-be
+  backend:
+    image: tonyyou998/roomus-be
+    ports:
+      - "3001:3001"
+    # networks:
+    #   - uit
+    environment:
+      - JWT_KEY=vh5iz1VsJeciZ8TA
+    deploy: 
+      restart_policy:
+          condition: on-failure
+          delay: 3s
+          max_attempts: 3
+          window: 120s
+  # roomusDb:
+  #   image: mysql:8.0
+  #   restart: always
+  #   env_file: ./.env
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+  #     - MYSQL_DATABASE=$DB_NAME
   #   ports:
-  #     - "3000:3001"
+  #     - "3306:3306"
+  #   volumes:
+  #     - roomusDb:/var/lib/mysql
   #   networks:
   #     - uit
-  #   deploy: 
-  #     restart_policy:
-  #         condition: on-failure
-  #         delay: 3s
-  #         max_attempts: 3
-  #         window: 120s
-  roomusDb:
-    image: mysql:8.0
-    restart: always
-    env_file: ./.env
-    environment:
-      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
-      - MYSQL_DATABASE=$DB_NAME
-    ports:
-      - "3306:3306"
-    volumes:
-      - roomusDb:/var/lib/mysql
-    networks:
-      - uit
 
-volumes:
-  roomusDb:
-networks:
-  uit:
-    driver: bridge
+# volumes:
+#   roomusDb:
+# networks:
+#   uit:
+#     driver: bridge

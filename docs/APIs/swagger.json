@@ -15,7 +15,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/api/v1",
+            "url": "http://localhost:3001/api/v1",
             "description": "development server"
         },
         {
@@ -171,19 +171,19 @@
                 }
             }
         },
-        "/property/add-property": {
+        "/service/add-service": {
             "post": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "add property with image",
+                "summary": "add service ",
                 "requestBody": {
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "propertyName": {
+                                    "serviceName": {
                                         "type": "string"
                                     },
                                     "address": {
@@ -192,16 +192,14 @@
                                     "description": {
                                         "type": "string"
                                     },
-                                    "tagId": {
+                                    "bussinessId": {
                                         "type": "string"
                                     },
-                                    "property-image": {
-                                        "type": "array",
-                                        "minItems": 3,
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
+                                    "image": {
+                                        "type": "string"
+                                    },
+                                    "servieType":{
+                                        "type":"string"
                                     }
                                 }
                             }
@@ -220,7 +218,7 @@
                                         "id": {
                                             "type": "string"
                                         },
-                                        "propertyName": {
+                                        "serviceName": {
                                             "type": "string"
                                         },
                                         "address": {
@@ -229,6 +227,9 @@
                                         "description": {
                                             "type": "string"
                                         },
+                                        "servieType":{
+                                            "type":"string"
+                                        },
                                         "createdAt": {
                                             "type": "string"
                                         },
@@ -251,33 +252,32 @@
                 ]
             }
         },
-        "/property/add-item": {
+        "/service/add-service-item": {
             "post": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "add item to property",
+                "summary": "add item to service",
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "roomName": {
+                                    "serviceId": {
+                                        "type": "string"
+                                    },
+                                    "images": {
                                         "type": "string"
                                     },
                                     "price": {
-                                        "type": "string"
+                                        "type": "integer"
                                     },
                                     "description": {
                                         "type": "string"
                                     },
-                                    "propertyId": {
-                                        "type": "string"
-                                    },
-                                    "property-image": {
-                                        "type": "string",
-                                        "format": "binary"
+                                    "itemType": {
+                                        "type": "integer"
                                     }
                                 }
                             }
@@ -296,17 +296,20 @@
                                         "id": {
                                             "type": "string"
                                         },
-                                        "roomName": {
+                                        "serviceId": {
                                             "type": "string"
                                         },
-                                        "propertyId": {
+                                        "images": {
                                             "type": "string"
+                                        },
+                                        "price": {
+                                            "type": "integer"
                                         },
                                         "description": {
                                             "type": "string"
                                         },
-                                        "price": {
-                                            "type": "string"
+                                        "itemType": {
+                                            "type": "integer"
                                         },
                                         "createdAt": {
                                             "type": "string"
@@ -330,12 +333,12 @@
                 ]
             }
         },
-        "/property/get-tags": {
+        "/service/get-services": {
             "get": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "get property's tag",
+                "summary": "get service",
                 "responses": {
                     "201": {
                         "description": "Get successfully",
@@ -367,23 +370,24 @@
                 }
             }
         },
-        "/property/get-property-by-tagId/{tagId}": {
+        "/service/get-service-item/{serviceId}": {
             "get": {
                 "tags": [
-                    "property"
+                    "service"
                 ],
-                "summary": "get property by tag",
+                "summary": "get service item by serviceId",
                 "parameters":[ {
-                    "name": "tagId",
+                    "name": "serviceId",
                     "in": "path",
-                    "description": "Tag ID of the property to retrieve",
+                    "description": " ID of the service to retrieve",
                     "required": true,
                     "type": "string"
                 }],
+              
                 "produces": [
                     "application/json"
                   ],
-                  "description":"ghet property by tagid",
+                  "description":"get service item by service id",
                 "responses": {
                     "201": {
                         "description": "Get successfully",
@@ -395,8 +399,23 @@
                                         "id": {
                                             "type": "string"
                                         },
-                                        "tagName": {
+                                        "serviceId": {
                                             "type": "string"
+                                        },
+                                        "images":{
+                                            "type":"string"
+                                        },
+                                        "status":{
+                                            "type":"string"
+                                        },
+                                        "price":{
+                                            "type":"double"
+                                        },
+                                        "description":{
+                                            "type":"string"
+                                        },
+                                        "itemType":{
+                                            "type":"integer"
                                         },
                                         "createdAt": {
                                             "type": "string"
