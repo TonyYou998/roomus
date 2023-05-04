@@ -21,4 +21,15 @@ const createBusiness = async (req, res, next) => {
   }
 };
 
-module.exports = { createBusiness };
+const getBusinessByUserId = async (req, res, next) => {
+  try {
+    const business = await service.getBusinessByUserId(req);
+    res.status(201).json({
+      business,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createBusiness, getBusinessByUserId };

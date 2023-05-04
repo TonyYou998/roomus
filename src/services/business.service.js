@@ -33,4 +33,21 @@ const createBusiness = async (req) => {
   }
 };
 
-module.exports = { createBusiness };
+const getBusinessByUserId = async (req) => {
+  try {
+    const userId = req.user.id;
+    const business = await BussinessProfile.findOne({
+      where: { userId },
+    });
+
+    if (!business) return { msg: "Found no business with provided userId" };
+
+    return business;
+  } catch (error) {
+    error.status = error.status || 400;
+    console.log(error);
+    throw error;
+  }
+};
+
+module.exports = { createBusiness, getBusinessByUserId };
