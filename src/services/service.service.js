@@ -130,45 +130,51 @@ const getServices = async () => {
   }
 };
 
-const addServiceItem = async (request) => {
-  const { serviceId, images, price, description, itemType } = request;
-  try {
-    const newServiceItem = await ServiceItem.create({
-      id: uuidv4(),
-      serviceId,
-      images,
-      status: "EMPTY",
-      price,
-      description,
-      itemType,
-    });
-    return newServiceItem;
-  } catch (error) {
-    throw error;
-  }
-};
 
-const getDetailItemById = async (id) => {
-  try {
-    const item = await ServiceItem.findOne({
-      where: {
-        id,
-      },
-    });
-    return item;
-  } catch (error) {
-    throw error;
-  }
-};
 
-module.exports = {
-  searchBusinessService,
-  getDetailItemById,
-  addService,
-  deleteService,
-  addServiceItem,
-  getServices,
-  getServiceByBusinessId,
-  getServiceItemsByServiceId,
-  addServiceType,
-};
+
+
+
+
+
+const addServiceItem=async (request)=>{
+    const {serviceId,images,price,description,itemType,serviceItemName}=request;
+    try {
+        const newServiceItem=await ServiceItem.create({
+            id:uuidv4(),
+            serviceId,
+            images,
+            status:"EMPTY",
+            price,
+            description,
+            itemType,
+            serviceItemName,
+        });
+        return newServiceItem;
+    } catch (error) {
+        throw error;
+    }
+    
+
+
+}
+const getDetailItemById=async (id)=>{
+    try {
+        const item=await ServiceItem.findOne({
+            where:{
+                id,
+            }
+        });
+        return item;
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+
+
+  
+  module.exports={ deleteService,searchBusinessService,getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId,addServiceType,};
+
+

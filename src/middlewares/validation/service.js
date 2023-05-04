@@ -7,12 +7,13 @@ const validateAddService = [
   check("description").notEmpty(),
   check("address").notEmpty(),
 ];
-const validateAddServiceItem = [
-  check("serviceId").notEmpty(),
-  check("images").notEmpty(),
-  check("price").notEmpty(),
-  check("description").notEmpty(),
-  check("itemType").notEmpty(),
+const validateAddServiceItem=[
+    check("serviceId").notEmpty(),
+    check("images").notEmpty(),
+    check("price").notEmpty(),
+    check("description").notEmpty(),
+    check("itemType").notEmpty(),
+    check("serviceItemName").notEmpty(),
 ];
 const validateDeleteService = [check("serviceId").notEmpty()];
 const validateAddServiceType = [check("typeName").notEmpty()];

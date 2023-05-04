@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey:true,
     },
     serviceId: DataTypes.STRING,
+    serviceItemName:DataTypes.STRING,
     images: DataTypes.STRING,
     status: DataTypes.STRING,
     price: DataTypes.DOUBLE,

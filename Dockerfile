@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose port 3000
-EXPOSE 3000
+EXPOSE 3001
 
 # Start the app
 CMD ["sh", "-c", "npm start && npx sequelize-cli db:migrate"]
