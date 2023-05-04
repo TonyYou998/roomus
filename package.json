@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=12.0.0"
+},
   "scripts": {
   
-    "dev": "nodemon server.js"
+    "dev": " nodemon server.js",
+    "start":" node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +34,7 @@
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
     "validator": "^13.9.0"
+  
   },
   "devDependencies": {
     "morgan": "^1.10.0",

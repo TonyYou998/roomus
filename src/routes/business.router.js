@@ -1,9 +1,28 @@
 const businessRouter = require("express").Router();
-const { createBusiness } = require("../controller/business.controller");
+const {
+  createBusiness,
+  getBusinessByUserId,
+} = require("../controller/business.controller");
+const { authenticate } = require("../middlewares/auth/authenticate");
+const { authorize } = require("../middlewares/auth/authorize");
+const { ROLE } = require("../utils/constants/role");
+
 const {
   validateCreateBusiness,
 } = require("../middlewares/validation/business");
 
-businessRouter.post("/create", validateCreateBusiness, createBusiness);
+businessRouter.get(
+  "/user/list",
+  authenticate,
+  authorize([ROLE.HOST]),
+  getBusinessByUserId
+);
+businessRouter.post(
+  "/create",
+  authenticate,
+  authorize([ROLE.HOST]),
+  validateCreateBusiness,
+  createBusiness
+);
 
 module.exports = { businessRouter };

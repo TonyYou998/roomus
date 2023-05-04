@@ -1,11 +1,24 @@
 const serviceRouter = require("express").Router();
 
-const { addService, addServiceItem, getServiceItems, getServiceByBusinessId, getServices, addServiceType} = require("../controller/service.controller");
-const { validateAddService, validateAddServiceItem, validateAddServiceType ,} = require("../middlewares/validation/service");
+const {
+  addService,
+  deleteService,
+  addServiceItem,
+  getServiceItems,
+  getServiceByBusinessId,
+  getServices,
+  addServiceType,
+  searchBusinessService,
+} = require("../controller/service.controller");
+const {
+  validateAddService,
+  validateDeleteService,
+  validateAddServiceItem,
+  validateAddServiceType,
+} = require("../middlewares/validation/service");
 
-const { authenticate} = require("../middlewares/auth/authenticate");
+const { authenticate } = require("../middlewares/auth/authenticate");
 const { authorize } = require("../middlewares/auth/authorize");
-
 
 serviceRouter.post(
   "/add-service",
@@ -13,27 +26,37 @@ serviceRouter.post(
   validateAddService,
   addService
 );
+serviceRouter.delete(
+  "/delete/:serviceId",
+  authenticate,
+  authorize([2]),
+  deleteService
+);
 serviceRouter.get(
   "/get-service-item/:serviceId",
   authenticate,
   getServiceItems
 );
-
-
-serviceRouter.post("/add-service-type",authenticate,authorize([2]),validateAddServiceType,addServiceType);
-
+serviceRouter.get("/search", authenticate, searchBusinessService);
+serviceRouter.post(
+  "/add-service-type",
+  authenticate,
+  authorize([2]),
+  validateAddServiceType,
+  addServiceType
+);
 serviceRouter.post(
   "/add-service-item",
   authenticate,
   validateAddServiceItem,
   addServiceItem
 );
-serviceRouter.get("/get-services", authenticate, authorize([2]),getServices);
+serviceRouter.get("/get-services", authenticate, authorize([2]), getServices);
 serviceRouter.get(
   "/business/:businessId",
-  authenticate,authorize([2]),
+  authenticate,
+  authorize([2]),
   getServiceByBusinessId
 );
-
 
 module.exports = { serviceRouter };

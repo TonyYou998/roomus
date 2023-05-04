@@ -9,8 +9,16 @@ const { sequelize } = require("./src/models");
 const { rootRouter } = require("./src/routes/root.router");
 
 const cors = require("cors");
-//app.use(cors(config.get("cors")));
-app.use(cors());
+
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST,PUT,GET,DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  console.log(req.headers.origin)
+  next();
+});
+
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -26,6 +34,7 @@ app.use(compression());
 
 const swaggerDocument = require("./docs/APIs/swagger.json");
 const swaggerUI = require("swagger-ui-express");
+const { log } = require("console");
 const publicPathDir = path.join(__dirname, "./public");
 app.use("/api/v1", rootRouter);
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
