@@ -7,11 +7,6 @@
     "contact": {
       "email": "tanvuu998@gmail.com"
     },
-<<<<<<< HEAD
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-=======
     "servers": [
         {
             "url": "http://localhost:3001/api/v1",
@@ -481,7 +476,6 @@
                 }
             }
         }
->>>>>>> master
     },
     "version": "1.0.0"
   },
