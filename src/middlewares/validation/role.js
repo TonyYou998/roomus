@@ -5,4 +5,13 @@ const validateAddRole = [
   check("description").notEmpty(),
 ];
 
-module.exports = { validateAddRole };
+const validateBusinessRole = [
+  check("fullname").notEmpty(),
+  check("email").isEmail(),
+  check("nameHost").notEmpty(),
+  check("address").notEmpty(),
+  check("description").notEmpty(),
+  check("taxNumber").notEmpty(),
+];
+
+module.exports = { validateAddRole, validateBusinessRole };

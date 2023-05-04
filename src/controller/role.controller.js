@@ -27,4 +27,24 @@ const getRoleById = async (req, res, next) => {
   }
 };
 
-module.exports = { addRole, getRoleById };
+const postCreateBusinessProfile = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      throw new HttpError(
+        `Invalid input passed. Please check your input again.`,
+        422
+      );
+    const { user, businessProfile } = await service.postCreateBusinessProfile(
+      req
+    );
+    res.status(200).json({
+      user,
+      businessProfile,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { addRole, getRoleById, postCreateBusinessProfile };
