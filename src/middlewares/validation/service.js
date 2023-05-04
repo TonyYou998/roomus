@@ -13,6 +13,7 @@ const validateAddServiceItem=[
     check("price").notEmpty(),
     check("description").notEmpty(),
     check("itemType").notEmpty(),
+    check("serviceItemName").notEmpty(),
 ];
 const validateAddServiceType=[
     

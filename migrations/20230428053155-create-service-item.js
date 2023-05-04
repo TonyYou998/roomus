@@ -17,6 +17,9 @@ module.exports = {
           key:"id"
         }
       },
+      serviceItemName:{
+        type:Sequelize.STRING,
+      },
       images: {
         type: Sequelize.STRING
       },

@@ -109,7 +109,7 @@ const getServices=async ()=>{
     }
 
 const addServiceItem=async (request)=>{
-    const {serviceId,images,price,description,itemType}=request;
+    const {serviceId,images,price,description,itemType,serviceItemName}=request;
     try {
         const newServiceItem=await ServiceItem.create({
             id:uuidv4(),
@@ -119,6 +119,7 @@ const addServiceItem=async (request)=>{
             price,
             description,
             itemType,
+            serviceItemName,
         });
         return newServiceItem;
     } catch (error) {
