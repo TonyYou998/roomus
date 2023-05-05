@@ -12,7 +12,7 @@ const {
 } = require("../middlewares/validation/business");
 
 businessRouter.get(
-  "/user/list",
+  "/list",
   authenticate,
   authorize([ROLE.HOST]),
   getBusinessByUserId
