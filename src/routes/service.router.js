@@ -51,7 +51,7 @@ serviceRouter.post(
   validateAddServiceItem,
   addServiceItem
 );
-serviceRouter.get("/get-services", authenticate, authorize([2]), getServices);
+serviceRouter.get("/get-services", authenticate, getServices);
 serviceRouter.get(
   "/business/:businessId",
   authenticate,
