@@ -12,6 +12,16 @@ const getServiceByBusinessId = async (req, res, next) => {
     next(error);
   }
 };
+const getServiceItemByBusinessId = async (req, res, next) => {
+  try {
+    const servicesItem = await serviceService.getServiceItemByBusinessId(req);
+    res.status(200).json({
+      servicesItem,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const addService = async (req, res, next) => {
   try {
@@ -116,5 +126,6 @@ module.exports = {
   getServiceItems,
   getServiceByBusinessId,
   getDetailServiceItemById,
+  getServiceItemByBusinessId,
   searchBusinessService,
 };

@@ -6,6 +6,7 @@ const {
   addServiceItem,
   getServiceItems,
   getServiceByBusinessId,
+  getServiceItemByBusinessId,
   getServices,
   addServiceType,
   searchBusinessService,
@@ -13,7 +14,6 @@ const {
 } = require("../controller/service.controller");
 const {
   validateAddService,
-  validateDeleteService,
   validateAddServiceItem,
   validateAddServiceType,
 } = require("../middlewares/validation/service");
@@ -38,6 +38,11 @@ serviceRouter.get(
   "/get-service-item/:serviceId",
   authenticate,
   getServiceItems
+);
+serviceRouter.get(
+  "/serviceItems/:businessId",
+  authenticate,
+  getServiceItemByBusinessId
 );
 serviceRouter.get("/search", authenticate, searchBusinessService);
 serviceRouter.post(
