@@ -7,6 +7,7 @@ const { favoriteRouter } = require("./favorite.router");
 const { roleRouter } = require("./role.router");
 const { userRouter } = require("./user.router");
 const { businessRouter } = require("./business.router");
+const { bookingRouter } = require("./booking.router");
 
 const rootRouter = express.Router();
 rootRouter.use("/service", serviceRouter);
@@ -18,5 +19,5 @@ rootRouter.use("/role", roleRouter);
 
 rootRouter.use("/favorite", favoriteRouter);
 
-
+rootRouter.use("/booking",bookingRouter);
 module.exports = { rootRouter };
