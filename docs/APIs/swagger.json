@@ -747,6 +747,70 @@
         ]
       }
     },
+    "/service/get/{accountId}": {
+      "get": {
+        "tags": ["Booking"],
+        "summary": "Get booking by account Id",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": " ID  to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get bookings by Id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "serviceItemId":{
+                        "type":"string"
+                    },
+                    "bookingTime":{
+                      "type":"string"
+                    },
+                    "checkinDay":{
+                      "type":"string"
+                    },
+                    "checkoutDay":{
+                      "type":"string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Found no role with provided Id"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "/booking/book": {
       "post": {
         "tags": ["Booking"],

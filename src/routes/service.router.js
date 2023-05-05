@@ -68,6 +68,6 @@ serviceRouter.get(
   getServiceByBusinessId
 );
 serviceRouter.get("/get-service-by-type/:serviceTypeId",filterService);
-serviceRouter.get("get-detail-service-item-by-id/:id",getDetailServiceItemById);
+serviceRouter.get("/get-detail-service-item-by-id/:id",getDetailServiceItemById);
 
 module.exports = { serviceRouter };
