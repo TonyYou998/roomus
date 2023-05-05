@@ -116,7 +116,18 @@ const filterService=async(req,res,next)=>{
 
 }
 
+const getDetailService=async (req,res,next)=>{
+  try {
+    const {serviceId}=req.params;
+    const dto=await serviceService.getDetailServiceById(serviceId);
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
+
+}
 module.exports = {
+  getDetailService,
   filterService,
   addServiceType,
   addService,

@@ -31,6 +31,19 @@ const getServiceByBusinessId = async (req) => {
     throw error;
   }
 };
+const getDetailServiceById=async (serviceId)=>{
+  try {
+    const serviceDetail=await Service.findOne({
+      where:{
+        id:serviceId,
+      }
+    });
+    return serviceDetail;
+  } catch (error) {
+    throw error;
+  }
+
+}
 
 const getServiceItemByBusinessId = async (req) => {
   try {
@@ -216,5 +229,5 @@ module.exports = {
   getServiceItemsByServiceId,
   getServiceItemByBusinessId,
   addServiceType,
-  getServiceByServiceTypeId
+  getServiceByServiceTypeId,getDetailServiceById
 };
