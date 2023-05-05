@@ -3,45 +3,50 @@
 const { v4: uuidv4 } = require("uuid");
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Services', {
-    
+    await queryInterface.createTable("Services", {
       id: {
         type: Sequelize.STRING,
-        defaultValue:()=>uuidv4,
+        defaultValue: () => uuidv4,
         allowNull: false,
         primaryKey: true,
       },
       serviceName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       bussinessId: {
         type: Sequelize.STRING,
-        references:{
-          model:"BussinessProfiles",
-          key:"id"
-        }
+        references: {
+          model: "BussinessProfiles",
+          key: "id",
+        },
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       serviceType: {
         type: Sequelize.INTEGER,
-        references:{
-          model:"ServiceTypes",
-          key:"id"
-        }
+        references: {
+          model: "ServiceTypes",
+          key: "id",
+        },
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       feedback: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       rating: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
+      },
+      price: {
+        type: Sequelize.STRING,
+      },
+      paymentMethod: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -56,6 +61,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Services');
-  }
+    await queryInterface.dropTable("Services");
+  },
 };

@@ -26,7 +26,8 @@ module.exports = {
           address: "215 Mai Chí Thọ",
           feedback: "helo",
           rating: 5,
-
+          price: "$200 - $600",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -46,7 +47,8 @@ module.exports = {
           address: "115 Sư Vạn Hạnh",
           feedback: "maaaaaaa",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -66,7 +68,8 @@ module.exports = {
           address: "115 Sư Vạn Hạnh",
           feedback: "maaaaaaa",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -86,7 +89,8 @@ module.exports = {
           address: "315 Bùi Hữu Nghĩa",
           feedback: "pretty",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -106,7 +110,8 @@ module.exports = {
           address: "315 Bùi Hữu Nghĩa",
           feedback: "pretty",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -126,7 +131,8 @@ module.exports = {
           address: "315 Bùi Hữu Nghĩa",
           feedback: "nice",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -146,7 +152,8 @@ module.exports = {
           address: "315 Bùi Hữu Nghĩa",
           feedback: "nice",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -157,7 +164,7 @@ module.exports = {
       "Services",
       [
         {
-          id:"405a020e-b1ee-474c-8135-9b11c835f689",
+          id: "405a020e-b1ee-474c-8135-9b11c835f689",
           serviceName: "Office new Hitech",
           bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
           image: "sdasdasd",
@@ -166,7 +173,8 @@ module.exports = {
           address: "31 Bùi Hữu Nghĩa",
           feedback: "nice",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },
@@ -177,7 +185,7 @@ module.exports = {
       "Services",
       [
         {
-          id:"405a020e-b1ee-474c-8135-9b11c835f680",
+          id: "405a020e-b1ee-474c-8135-9b11c835f680",
           serviceName: "Dancing lala ",
           bussinessId: "8e8bc057-51d5-480d-9bde-5ceeca669aa7",
           image: "sdasdasd",
@@ -186,7 +194,8 @@ module.exports = {
           address: "31 Bùi Hữu Nghĩa",
           feedback: "nice",
           rating: 1,
-
+          price: "$500 - $900",
+          paymentMethod: "Momo, Credit/Debit Card, Cash",
           createdAt: "2021-09-11 07:25:30",
           updatedAt: "2021-09-11 07:25:30",
         },

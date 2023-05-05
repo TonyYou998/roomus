@@ -32,9 +32,32 @@ const getServiceByBusinessId = async (req) => {
   }
 };
 
+const getServiceItemByBusinessId = async (req) => {
+  try {
+    const Op = Sequelize.Op;
+    const services = await Service.findAll({
+      where: { bussinessId: req.params.businessId },
+    });
+    const servicesItem = await ServiceItem.findAll({
+      where: { serviceId: { [Op.in]: services.map((service) => service.id) } },
+    });
+    return servicesItem;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const addService = async (request) => {
-  const { serviceName, bussinessId, image, serviceType, description, address } =
-    request;
+  const {
+    serviceName,
+    bussinessId,
+    image,
+    serviceType,
+    description,
+    address,
+    price,
+    paymentMethod,
+  } = request;
   try {
     const newService = await Service.create({
       id: uuidv4(),
@@ -44,6 +67,8 @@ const addService = async (request) => {
       serviceType,
       description,
       address,
+      price,
+      paymentMethod,
     });
     return newService;
   } catch (error) {
@@ -130,51 +155,47 @@ const getServices = async () => {
   }
 };
 
+const addServiceItem = async (request) => {
+  const { serviceId, images, price, description, itemType, serviceItemName } =
+    request;
+  try {
+    const newServiceItem = await ServiceItem.create({
+      id: uuidv4(),
+      serviceId,
+      images,
+      status: "EMPTY",
+      price,
+      description,
+      itemType,
+      serviceItemName,
+    });
+    return newServiceItem;
+  } catch (error) {
+    throw error;
+  }
+};
+const getDetailItemById = async (id) => {
+  try {
+    const item = await ServiceItem.findOne({
+      where: {
+        id,
+      },
+    });
+    return item;
+  } catch (error) {
+    throw error;
+  }
+};
 
-
-
-
-
-
-
-const addServiceItem=async (request)=>{
-    const {serviceId,images,price,description,itemType,serviceItemName}=request;
-    try {
-        const newServiceItem=await ServiceItem.create({
-            id:uuidv4(),
-            serviceId,
-            images,
-            status:"EMPTY",
-            price,
-            description,
-            itemType,
-            serviceItemName,
-        });
-        return newServiceItem;
-    } catch (error) {
-        throw error;
-    }
-    
-
-
-}
-const getDetailItemById=async (id)=>{
-    try {
-        const item=await ServiceItem.findOne({
-            where:{
-                id,
-            }
-        });
-        return item;
-    } catch (error) {
-        throw error;
-    }
-
-}
-
-
-
-  
-  module.exports={ deleteService,searchBusinessService,getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId,addServiceType,};
-
-
+module.exports = {
+  deleteService,
+  searchBusinessService,
+  getDetailItemById,
+  addService,
+  addServiceItem,
+  getServices,
+  getServiceByBusinessId,
+  getServiceItemsByServiceId,
+  getServiceItemByBusinessId,
+  addServiceType,
+};
