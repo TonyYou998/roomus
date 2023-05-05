@@ -747,13 +747,13 @@
         ]
       }
     },
-    "/service/get/{accountId}": {
+    "/service/get-detail-service-item-by-id/{id}": {
       "get": {
-        "tags": ["Booking"],
-        "summary": "Get booking by account Id",
+        "tags": ["service"],
+        "summary": "Get service item by Id",
         "parameters": [
           {
-            "name": "accountId",
+            "name": "id",
             "in": "path",
             "description": " ID  to retrieve",
             "required": true,
