@@ -11,6 +11,7 @@ const {
   addServiceType,
   searchBusinessService,
   filterService,
+  getDetailServiceItemById,
 } = require("../controller/service.controller");
 const {
   validateAddService,
@@ -67,5 +68,6 @@ serviceRouter.get(
   getServiceByBusinessId
 );
 serviceRouter.get("/get-service-by-type/:serviceTypeId",filterService);
+serviceRouter.get("get-detail-service-item-by-id/:id",getDetailServiceItemById);
 
 module.exports = { serviceRouter };
