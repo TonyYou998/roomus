@@ -18,4 +18,18 @@ const booking=async (request)=>{
     }
 
 }
-module.exports={booking};
+const getBookingByAccountId=async (accountId)=>{
+    try {
+        const bookings=await Booking.findAll({
+            where:{
+                accountId,
+            }
+        });
+        return bookings;     
+    } catch (error) {
+        throw error;
+    }
+   
+
+}
+module.exports={booking,getBookingByAccountId};

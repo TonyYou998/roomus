@@ -683,6 +683,70 @@
         ]
       }
     },
+    "/booking/get/{accountId}": {
+      "get": {
+        "tags": ["Booking"],
+        "summary": "Get booking by account Id",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": " ID  to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get bookings by Id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "serviceItemId":{
+                        "type":"string"
+                    },
+                    "bookingTime":{
+                      "type":"string"
+                    },
+                    "checkinDay":{
+                      "type":"string"
+                    },
+                    "checkoutDay":{
+                      "type":"string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Found no role with provided Id"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "/booking/book": {
       "post": {
         "tags": ["Booking"],
@@ -756,6 +820,54 @@
           }
         }
       },
+       "/role/:roleId": {
+      "get": {
+        "tags": ["Role"],
+        "summary": "Get specific role by Id",
+        " parameters": [
+          {
+            "roleId": "role Id need looking up"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get role by Id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "roleName": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Found no role with provided Id"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
       "/service/get-service-by-type/{serviceTypeId}": {
         "get": {
           "tags": ["service"],
@@ -824,7 +936,9 @@
           }
         }
       }
+   
     },
+  
     "components": {
       "securitySchemes": {
         "BearerAuth": {

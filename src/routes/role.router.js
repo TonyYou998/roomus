@@ -12,12 +12,13 @@ const {
 const { authenticate } = require("../middlewares/auth/authenticate");
 
 roleRouter.post("/", authenticate, validateAddRole, addRole);
-roleRouter.get("/:id", authenticate, getRoleById);
 roleRouter.post(
   "/business/create",
   authenticate,
   validateBusinessRole,
   postCreateBusinessProfile
 );
+roleRouter.get("/:id", authenticate, getRoleById);
+
 
 module.exports = { roleRouter };
