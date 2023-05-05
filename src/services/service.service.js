@@ -171,10 +171,24 @@ const getDetailItemById=async (id)=>{
     }
 
 }
+const getServiceByServiceTypeId=async (serviceTypeId)=>{
+  try {
+   
+    const servies=await Service.findAll({
+      where:{
+        serviceType:serviceTypeId,
+      }
+    });
+    return servies;
+  } catch (error) {
+    throw error;
+  }
+
+}
 
 
 
   
-  module.exports={ deleteService,searchBusinessService,getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId,addServiceType,};
+  module.exports={ getServiceByServiceTypeId,deleteService,searchBusinessService,getDetailItemById,addService,addServiceItem,getServices,getServiceByBusinessId,getServiceItemsByServiceId,addServiceType,};
 
 
