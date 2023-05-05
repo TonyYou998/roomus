@@ -20,7 +20,7 @@ const {
 
 const { authenticate } = require("../middlewares/auth/authenticate");
 const { authorize } = require("../middlewares/auth/authorize");
-const { getServiceByServiceTypeId } = require("../services/service.service");
+
 
 serviceRouter.post(
   "/add-service",
@@ -58,7 +58,8 @@ serviceRouter.post(
   validateAddServiceItem,
   addServiceItem
 );
-serviceRouter.get("/get-services", authenticate, getServices);
+serviceRouter.get("/get-services", getServices);
+
 serviceRouter.get(
   "/business/:businessId",
   authenticate,
