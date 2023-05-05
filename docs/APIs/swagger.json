@@ -592,6 +592,149 @@
             }
           ]
         }
+      },
+      "/booking/book":{
+        "post": {
+          "tags": ["Booking"],
+          "summary": "Book an item",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "serviceItemId": {
+                      "type": "string"
+                    },
+                    "bookingTime":{
+                      "type":"string"
+                    },
+                    "checkinDay":{
+                      "type":"string"
+                    },
+                    "checkoutDay":{
+                      "type":"string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Reserve successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "serviceItemId": {
+                        "type": "string"
+                      },
+                      "bookingTime": {
+                        "type": "string"
+                      },
+                      "checkinDay": {
+                        "type": "string"
+                      },
+                      "checkoutDay":{
+                        "type":"string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "User info is missing"
+            }
+          }
+        },
+      "/service/get-service-by-type/{serviceTypeId}": {
+        "get": {
+          "tags": [
+              "service"
+          ],
+          "summary": "get service  by serviceTypeId",
+          "parameters":[ {
+              "name": "serviceTypeId",
+              "in": "path",
+              "description": " ID of the service type to retrieve",
+              "required": true,
+              "type": "string"
+          }],
+        
+          "produces": [
+              "application/json"
+            ],
+            "description":"get service item by service type id",
+          "responses": {
+              "201": {
+                  "description": "Get successfully",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "id": {
+                                      "type": "string"
+                                  },
+                                  "serviceName": {
+                                      "type": "string"
+                                  },
+                                  "image":{
+                                      "type":"string"
+                                  },
+                                  "bussinessId":{
+                                    "type":"string"
+                                  },
+                                  "serviceType":{
+                                    "type":"string"
+                                  },
+                                  "description":{
+                                      "type":"string"
+                                  },
+                                  "address":{
+                                    "type":"string"
+                                  },
+                                  "feedback":{
+                                    "type":"String"
+                                  },
+                                  "rating":{
+                                    "type":"String"
+                                  },
+                                  "createdAt": {
+                                      "type": "string"
+                                  },
+                                  "updatedAt": {
+                                      "type": "string"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "502": {
+                  "description": "service unavailable"
+              }
+          }
+      }
       }
   },
   "components": {
@@ -603,4 +746,5 @@
           }
       }
   }
+}
 }

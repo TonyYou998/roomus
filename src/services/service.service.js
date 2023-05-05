@@ -187,6 +187,56 @@ const getDetailItemById = async (id) => {
   }
 };
 
+const addServiceItem=async (request)=>{
+    const {serviceId,images,price,description,itemType,serviceItemName}=request;
+    try {
+        const newServiceItem=await ServiceItem.create({
+            id:uuidv4(),
+            serviceId,
+            images,
+            status:"EMPTY",
+            price,
+            description,
+            itemType,
+            serviceItemName,
+        });
+        return newServiceItem;
+    } catch (error) {
+        throw error;
+    }
+    
+
+
+}
+const getDetailItemById=async (id)=>{
+    try {
+        const item=await ServiceItem.findOne({
+            where:{
+                id,
+            }
+        });
+        return item;
+    } catch (error) {
+        throw error;
+    }
+
+}
+const getServiceByServiceTypeId=async (serviceTypeId)=>{
+  try {
+   
+    const servies=await Service.findAll({
+      where:{
+        serviceType:serviceTypeId,
+      }
+    });
+    return servies;
+  } catch (error) {
+    throw error;
+  }
+
+}
+
+
 module.exports = {
   deleteService,
   searchBusinessService,

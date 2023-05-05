@@ -10,6 +10,7 @@ const {
   getServices,
   addServiceType,
   searchBusinessService,
+  filterService,
 } = require("../controller/service.controller");
 const {
   validateAddService,
@@ -19,6 +20,7 @@ const {
 
 const { authenticate } = require("../middlewares/auth/authenticate");
 const { authorize } = require("../middlewares/auth/authorize");
+const { getServiceByServiceTypeId } = require("../services/service.service");
 
 serviceRouter.post(
   "/add-service",
@@ -63,5 +65,6 @@ serviceRouter.get(
   authorize([2]),
   getServiceByBusinessId
 );
+serviceRouter.get("/get-service-by-type/:serviceTypeId",filterService);
 
 module.exports = { serviceRouter };
