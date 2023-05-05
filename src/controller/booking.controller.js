@@ -21,5 +21,15 @@ const booking=async (req,res,next)=>{
     }
 
 }
+const getBookingByAccountId=async (req,res,next)=>{
+  try {
+      const {accountId}=req.params;
+      const dto=await bookingService.getBookingByAccountId(accountId);
+      res.status(200).send(dto);
+  } catch (error) {
+    next();
+  }
 
-module.exports={booking}
+}
+
+module.exports={booking,getBookingByAccountId}

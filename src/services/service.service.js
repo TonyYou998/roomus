@@ -216,4 +216,5 @@ module.exports = {
   getServiceItemsByServiceId,
   getServiceItemByBusinessId,
   addServiceType,
+  getServiceByServiceTypeId
 };
