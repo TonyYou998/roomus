@@ -6,13 +6,13 @@ const validateAddService = [
   check("serviceType").notEmpty(),
   check("description").notEmpty(),
   check("address").notEmpty(),
-  check("price").notEmpty(),
+  check("price").isNumeric(),
   check("paymentMethod").notEmpty(),
 ];
 const validateAddServiceItem = [
   check("serviceId").notEmpty(),
   check("images").notEmpty(),
-  check("price").notEmpty(),
+  check("price").isNumeric(),
   check("description").notEmpty(),
   check("itemType").notEmpty(),
   check("serviceItemName").notEmpty(),
