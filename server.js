@@ -3,9 +3,9 @@ const config = require("config");
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
 
-const { sequelize } = require("./src/models");
+// const { sequelize } = require("./src/models");
 const { rootRouter } = require("./src/routes/root.router");
 
 const cors = require("cors");
@@ -50,14 +50,16 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, async () => {
-  console.log(`Server is up on PORT ${PORT}`);
-  try {
-    await sequelize.authenticate();
-    console.log("SQL database connected!");
+// app.listen(PORT, async () => {
+//   console.log(`Server is up on PORT ${PORT}`);
+//   try {
+//     await sequelize.authenticate();
+//     console.log("SQL database connected!");
 
-  } catch (err) {
-    console.log("SQL database connection failed");
-    console.log(`ERROR: ${err.message}`);
-  }
-});
+//   } catch (err) {
+//     console.log("SQL database connection failed");
+//     console.log(`ERROR: ${err.message}`);
+//   }
+// });
+
+module.exports=app;
