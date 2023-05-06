@@ -17,11 +17,9 @@ const validateAddServiceItem = [
   check("itemType").notEmpty(),
   check("serviceItemName").notEmpty(),
 ];
-const validateDeleteService = [check("serviceId").notEmpty()];
 const validateAddServiceType = [check("typeName").notEmpty()];
 module.exports = {
   validateAddService,
-  validateDeleteService,
   validateAddServiceItem,
   validateAddServiceType,
 };

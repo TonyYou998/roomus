@@ -34,4 +34,15 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login };
+const deleteProfile = async (req, res, next) => {
+  try {
+    const { msg } = await service.deleteProfile(req);
+    res.json({
+      msg,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { register, login, deleteProfile };

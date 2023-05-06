@@ -246,7 +246,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "msg": "Found no service with provided Id"
+                    "msg": "Deleted service successfully"
                   }
                 }
               }
@@ -254,6 +254,35 @@
           },
           "400": {
             "description": "Service Id is missing"
+          }
+        }
+      }
+    },
+    "/service/delete-by-servicetype/:serviceTypeId": {
+      "post": {
+        "tags": ["Service"],
+        "summary": "Delete service by service type",
+        "parameters": [
+          {
+            "serviceId": "serviceTypeId need looking up"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete service successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "msg": "Deleted service successfully"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "serviceTypeId is missing"
           }
         }
       }
@@ -284,6 +313,12 @@
                     "type": "string"
                   },
                   "servieType": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "string"
+                  },
+                  "paymentMethod": {
                     "type": "string"
                   }
                 }
@@ -353,6 +388,9 @@
                   "images": {
                     "type": "string"
                   },
+                  "serviceItemName": {
+                    "type": "string"
+                  },
                   "price": {
                     "type": "integer"
                   },
@@ -382,6 +420,9 @@
                     "serviceId": {
                       "type": "string"
                     },
+                    "serviceItemName": {
+                      "type": "string"
+                    },
                     "images": {
                       "type": "string"
                     },
@@ -407,6 +448,96 @@
           },
           "502": {
             "description": "service unavailable"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/service/update-service-item/:serviceItemId": {
+      "post": {
+        "tags": ["serviceitem"],
+        "summary": "update service item",
+        " parameters": [
+          {
+            "serviceItemId": "service item Id need looking up"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "serviceId": {
+                    "type": "string"
+                  },
+                  "images": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "itemType": {
+                    "type": "integer"
+                  },
+                  "serviceItemName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Update successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "serviceId": {
+                      "type": "string"
+                    },
+                    "images": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "itemType": {
+                      "type": "integer"
+                    },
+                    "serviceItemName": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid inputs passed."
           }
         },
         "security": [
@@ -713,17 +844,17 @@
                     "accountId": {
                       "type": "string"
                     },
-                    "serviceItemId":{
-                        "type":"string"
+                    "serviceItemId": {
+                      "type": "string"
                     },
-                    "bookingTime":{
-                      "type":"string"
+                    "bookingTime": {
+                      "type": "string"
                     },
-                    "checkinDay":{
-                      "type":"string"
+                    "checkinDay": {
+                      "type": "string"
                     },
-                    "checkoutDay":{
-                      "type":"string"
+                    "checkoutDay": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string"
@@ -777,17 +908,17 @@
                     "accountId": {
                       "type": "string"
                     },
-                    "serviceItemId":{
-                        "type":"string"
+                    "serviceItemId": {
+                      "type": "string"
                     },
-                    "bookingTime":{
-                      "type":"string"
+                    "bookingTime": {
+                      "type": "string"
                     },
-                    "checkinDay":{
-                      "type":"string"
+                    "checkinDay": {
+                      "type": "string"
                     },
-                    "checkoutDay":{
-                      "type":"string"
+                    "checkoutDay": {
+                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string"
@@ -884,54 +1015,54 @@
           }
         }
       },
-       "/role/:roleId": {
-      "get": {
-        "tags": ["Role"],
-        "summary": "Get specific role by Id",
-        " parameters": [
-          {
-            "roleId": "role Id need looking up"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Get role by Id successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "roleName": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "createdAt": {
-                      "type": "string"
-                    },
-                    "updatedAt": {
-                      "type": "string"
+      "/role/:roleId": {
+        "get": {
+          "tags": ["Role"],
+          "summary": "Get specific role by Id",
+          " parameters": [
+            {
+              "roleId": "role Id need looking up"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Get role by Id successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "roleName": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      }
                     }
                   }
                 }
               }
+            },
+            "400": {
+              "description": "Found no role with provided Id"
             }
           },
-          "400": {
-            "description": "Found no role with provided Id"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
-      }
-    },
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ]
+        }
+      },
       "/service/get-service-by-type/{serviceTypeId}": {
         "get": {
           "tags": ["service"],
@@ -1000,9 +1131,8 @@
           }
         }
       }
-   
     },
-  
+
     "components": {
       "securitySchemes": {
         "BearerAuth": {

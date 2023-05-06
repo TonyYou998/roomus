@@ -31,19 +31,18 @@ const getServiceByBusinessId = async (req) => {
     throw error;
   }
 };
-const getDetailServiceById=async (serviceId)=>{
+const getDetailServiceById = async (serviceId) => {
   try {
-    const serviceDetail=await Service.findOne({
-      where:{
-        id:serviceId,
-      }
+    const serviceDetail = await Service.findOne({
+      where: {
+        id: serviceId,
+      },
     });
     return serviceDetail;
   } catch (error) {
     throw error;
   }
-
-}
+};
 
 const getServiceItemByBusinessId = async (req) => {
   try {
@@ -88,13 +87,48 @@ const addService = async (request) => {
     throw error;
   }
 };
+const updateServiceItem = async (req) => {
+  const {
+    serviceName,
+    bussinessId,
+    image,
+    serviceType,
+    description,
+    address,
+    price,
+    paymentMethod,
+  } = req.body;
+  try {
+    const updatedServiceItem = await ServiceItem.findOne({
+      where: { id: req.params.serviceItemId },
+    });
+    updateServiceItem.set({
+      serviceName,
+      bussinessId,
+      image,
+      serviceType,
+      description,
+      address,
+      price,
+      paymentMethod,
+    });
+
+    await updatedServiceItem.save();
+    return updatedServiceItem;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const deleteService = async (request) => {
   try {
     const business = await BussinessProfile.findOne({
       where: { userId: request.user.id },
     });
-    if (!business) throw new HttpError("No business found with this user");
+    if (!business)
+      throw new HttpError(
+        "No business found with this user. Unable to delete service."
+      );
 
     const serviceId = request.params.serviceId;
     const deleteService = await Service.destroy({
@@ -103,6 +137,30 @@ const deleteService = async (request) => {
     console.log(deleteService);
 
     if (!deleteService) return { msg: "Found no service with provided Id" };
+
+    return { msg: "Deleted service successfully" };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deleteByServiceType = async (request) => {
+  try {
+    const business = await BussinessProfile.findOne({
+      where: { userId: request.user.id },
+    });
+    if (!business)
+      throw new HttpError(
+        "No business found with this user. Unable to delete service."
+      );
+
+    const serviceTypeId = request.params.serviceTypeId;
+    const deleteService = await Service.destroy({
+      where: { serviceType: serviceTypeId },
+    });
+
+    if (!deleteService)
+      return { msg: "Found no service with provided serviceTypeId" };
 
     return { msg: "Deleted service successfully" };
   } catch (error) {
@@ -200,34 +258,32 @@ const getDetailItemById = async (id) => {
   }
 };
 
-
-
-const getServiceByServiceTypeId=async (serviceTypeId)=>{
+const getServiceByServiceTypeId = async (serviceTypeId) => {
   try {
-   
-    const servies=await Service.findAll({
-      where:{
-        serviceType:serviceTypeId,
-      }
+    const servies = await Service.findAll({
+      where: {
+        serviceType: serviceTypeId,
+      },
     });
     return servies;
   } catch (error) {
     throw error;
   }
-
-}
-
+};
 
 module.exports = {
   deleteService,
+  deleteByServiceType,
   searchBusinessService,
   getDetailItemById,
   addService,
+  updateServiceItem,
   addServiceItem,
   getServices,
   getServiceByBusinessId,
   getServiceItemsByServiceId,
   getServiceItemByBusinessId,
   addServiceType,
-  getServiceByServiceTypeId,getDetailServiceById
+  getServiceByServiceTypeId,
+  getDetailServiceById,
 };

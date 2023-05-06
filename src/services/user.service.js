@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 const register = async (req) => {
   try {
     const { email, password, username, fullname, phone } = req.body;
-    
+
     let newUser = await UserAccount.create({
       id: uuidv4(),
       role: ROLE.CLIENT,
@@ -44,4 +44,14 @@ const login = async (req) => {
   }
 };
 
-module.exports = { register, login };
+const deleteProfile = async (req) => {
+  try {
+    let deleteUser = await UserAccount.destroy({ where: { id: req.user.id } });
+    if (!deleteUser)
+      return { msg: "An error occur. User account cannot be deleted." };
+    return { msg: "User account deleted successfully." };
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { register, login, deleteProfile };

@@ -2,7 +2,9 @@ const serviceRouter = require("express").Router();
 
 const {
   addService,
+  updateServiceItem,
   deleteService,
+  deleteServiceByServiceType,
   addServiceItem,
   getServiceItems,
   getServiceByBusinessId,
@@ -23,12 +25,17 @@ const {
 const { authenticate } = require("../middlewares/auth/authenticate");
 const { authorize } = require("../middlewares/auth/authorize");
 
-
 serviceRouter.post(
   "/add-service",
   authenticate,
   validateAddService,
   addService
+);
+serviceRouter.delete(
+  "/delete-by-servicetype/:serviceTypeId",
+  authenticate,
+  authorize([2]),
+  deleteServiceByServiceType
 );
 serviceRouter.delete(
   "/delete/:serviceId",
@@ -60,6 +67,12 @@ serviceRouter.post(
   validateAddServiceItem,
   addServiceItem
 );
+serviceRouter.patch(
+  "/update-service-item/:serviceItemId",
+  authenticate,
+  validateAddServiceItem,
+  updateServiceItem
+);
 serviceRouter.get("/get-services", getServices);
 
 serviceRouter.get(
@@ -68,8 +81,11 @@ serviceRouter.get(
   authorize([2]),
   getServiceByBusinessId
 );
-serviceRouter.get("/get-service-by-type/:serviceTypeId",filterService);
-serviceRouter.get("/get-detail-service-item-by-id/:id",getDetailServiceItemById);
-serviceRouter.get("/get-detail-service-by-id/:serviceId",getDetailService);
+serviceRouter.get("/get-service-by-type/:serviceTypeId", filterService);
+serviceRouter.get(
+  "/get-detail-service-item-by-id/:id",
+  getDetailServiceItemById
+);
+serviceRouter.get("/get-detail-service-by-id/:serviceId", getDetailService);
 
 module.exports = { serviceRouter };
