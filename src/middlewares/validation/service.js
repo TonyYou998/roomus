@@ -14,7 +14,7 @@ const validateAddServiceItem = [
   check("images").notEmpty(),
   check("price").isNumeric(),
   check("description").notEmpty(),
-  check("itemType").notEmpty(),
+  check("itemType").isNumeric(),
   check("serviceItemName").notEmpty(),
 ];
 const validateAddServiceType = [check("typeName").notEmpty()];
