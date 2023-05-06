@@ -39,6 +39,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    },{
+      charset: "utf8",
+      collate: "utf8_unicode_ci",
     });
     await queryInterface.addColumn('Customers', 'userId', {
       type: Sequelize.STRING,
@@ -48,10 +51,16 @@ module.exports = {
         key: 'id',
       },
       unique: true,
+    },{
+      charset: "utf8",
+      collate: "utf8_unicode_ci",
     });
     await queryInterface.addConstraint('Customers', {
       type: 'unique',
       fields: ['userId'],
+    },{
+      charset: "utf8",
+      collate: "utf8_unicode_ci",
     });
   },
   async down(queryInterface, Sequelize) {
