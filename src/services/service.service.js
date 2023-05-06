@@ -89,7 +89,7 @@ const addService = async (request) => {
 };
 const updateServiceItem = async (req) => {
   const {
-    serviceName,
+    serviceItemName,
     bussinessId,
     image,
     serviceType,
@@ -102,16 +102,14 @@ const updateServiceItem = async (req) => {
     const updatedServiceItem = await ServiceItem.findOne({
       where: { id: req.params.serviceItemId },
     });
-    updateServiceItem.set({
-      serviceName,
-      bussinessId,
-      image,
-      serviceType,
-      description,
-      address,
-      price,
-      paymentMethod,
-    });
+    updatedServiceItem.serviceItemName = serviceItemName;
+    updatedServiceItem.bussinessId = bussinessId;
+    updatedServiceItem.image = image;
+    updatedServiceItem.serviceType = serviceType;
+    updatedServiceItem.description = description;
+    updatedServiceItem.address = address;
+    updatedServiceItem.price = price;
+    updatedServiceItem.paymentMethod = paymentMethod;
 
     await updatedServiceItem.save();
     return updatedServiceItem;
