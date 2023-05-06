@@ -1,5 +1,9 @@
 const userRouter = require("express").Router();
-const { register, login } = require("../controller/user.controller");
+const {
+  register,
+  login,
+  deleteProfile,
+} = require("../controller/user.controller");
 const {
   validateSignup,
   validateLogin,
@@ -7,5 +11,6 @@ const {
 
 userRouter.post("/register", validateSignup, register);
 userRouter.post("/login", validateLogin, login);
+userRouter.delete("/delete/profile", deleteProfile);
 
 module.exports = { userRouter };

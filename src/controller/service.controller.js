@@ -34,11 +34,36 @@ const addService = async (req, res, next) => {
     next(error);
   }
 };
+const updateServiceItem = async (req, res, next) => {
+  try {
+    if (!req.params.serviceItemId)
+      throw new HttpError(`Require service item Id`, 422);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) throw new HttpError(`Invalid inputs passed!`, 422);
+
+    const dto = await serviceService.updateServiceItem(req);
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
+};
 
 const deleteService = async (req, res, next) => {
   try {
     if (!req.params.serviceId) throw new HttpError(`Require serviceId`, 422);
     const dto = await serviceService.deleteService(req);
+
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteServiceByServiceType = async (req, res, next) => {
+  try {
+    if (!req.params.serviceTypeId)
+      throw new HttpError(`Require serviceTypeId`, 422);
+    const dto = await serviceService.deleteByServiceType(req);
 
     res.status(200).send(dto);
   } catch (error) {
@@ -104,33 +129,31 @@ const getDetailServiceItemById = async (req, res, next) => {
     next(error);
   }
 };
-const filterService=async(req,res,next)=>{
+const filterService = async (req, res, next) => {
   try {
-    const {serviceTypeId}=req.params;
-    const dto=await serviceService.getServiceByServiceTypeId(serviceTypeId);
-  ;
+    const { serviceTypeId } = req.params;
+    const dto = await serviceService.getServiceByServiceTypeId(serviceTypeId);
     res.status(200).send(dto);
   } catch (error) {
     next(error);
   }
+};
 
-}
-
-const getDetailService=async (req,res,next)=>{
+const getDetailService = async (req, res, next) => {
   try {
-    const {serviceId}=req.params;
-    const dto=await serviceService.getDetailServiceById(serviceId);
+    const { serviceId } = req.params;
+    const dto = await serviceService.getDetailServiceById(serviceId);
     res.status(200).send(dto);
   } catch (error) {
     next(error);
   }
-
-}
+};
 module.exports = {
   getDetailService,
   filterService,
   addServiceType,
   addService,
+  updateServiceItem,
   deleteService,
   getServices,
   addServiceItem,
@@ -139,4 +162,5 @@ module.exports = {
   getDetailServiceItemById,
   getServiceItemByBusinessId,
   searchBusinessService,
+  deleteServiceByServiceType,
 };
