@@ -24,7 +24,7 @@ const createBusiness = async (req, res, next) => {
 const getBusinessByUserId = async (req, res, next) => {
   try {
     const business = await service.getBusinessByUserId(req);
-    res.status(201).json({
+    res.status(200).json({
       business,
     });
   } catch (error) {

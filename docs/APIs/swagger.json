@@ -1,31 +1,29 @@
 {
   "openapi": "3.0.1",
   "info": {
-      "title": "ROOMUS API",
-      "description": "This is an API document for RoomUs online testing site.",
-      "termsOfService": "http://swagger.io/terms/",
-      "contact": {
-          "email": "tanvuu998@gmail.com"
-      },
-      "license": {
-          "name": "Apache 2.0",
-          "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-      },
-      "version": "1.0.0"
+    "title": "ROOMUS API",
+    "description": "This is an API document for RoomUs online testing site.",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "tanvuu998@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
   },
   "servers": [
-      {
-          "url": "http://localhost:3001/api/v1",
-          "description": "development server"
-      },
-      {
-          "url": "http://34.171.191.196:3000/api/v1",
-          "description": "production server"
-      }
+    {
+      "url": "http://localhost:3001/api/v1",
+      "description": "development server"
+    },
+    {
+      "url": "http://34.171.191.196:3000/api/v1",
+      "description": "production server"
+    }
   ],
-  "tags": [
-  
-  ],
+  "tags": [],
   "paths": {
     "/user/register": {
       "post": {
@@ -160,385 +158,799 @@
         }
       }
     },
-      "/service/add-service": {
-          "post": {
-              "tags": [
-                  "service"
-              ],
-              "summary": "add service ",
-              "requestBody": {
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "type": "object",
-                              "properties": {
-                                  "serviceName": {
-                                      "type": "string"
-                                  },
-                                  "address": {
-                                      "type": "string"
-                                  },
-                                  "description": {
-                                      "type": "string"
-                                  },
-                                  "bussinessId": {
-                                      "type": "string"
-                                  },
-                                  "image": {
-                                      "type": "string"
-                                  },
-                                  "servieType":{
-                                      "type":"string"
-                                  }
-                              }
-                          }
-                      }
+    "/business/list": {
+      "post": {
+        "tags": ["BusinessProfile"],
+        "summary": "Get business by specific userId",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
                   },
-                  "required": true
-              },
-              "responses": {
-                  "201": {
-                      "description": "Create successfully",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "object",
-                                  "properties": {
-                                      "id": {
-                                          "type": "string"
-                                      },
-                                      "serviceName": {
-                                          "type": "string"
-                                      },
-                                      "address": {
-                                          "type": "string"
-                                      },
-                                      "description": {
-                                          "type": "string"
-                                      },
-                                      "servieType":{
-                                          "type":"string"
-                                      },
-                                      "createdAt": {
-                                          "type": "string"
-                                      },
-                                      "updatedAt": {
-                                          "type": "string"
-                                      }
-                                  }
-                              }
-                          }
-                      }
-                  },
-                  "502": {
-                      "description": "service unavailable"
+                  "password": {
+                    "type": "string"
                   }
-              },
-              "security": [
-                  {
-                      "BearerAuth": []
-                  }
-              ]
-          }
-      },
-      "/service/add-service-item": {
-          "post": {
-              "tags": [
-                  "service"
-              ],
-              "summary": "add item to service",
-              "requestBody": {
-                  "content": {
-                      "multipart/form-data": {
-                          "schema": {
-                              "type": "object",
-                              "properties": {
-                                  "serviceId": {
-                                      "type": "string"
-                                  },
-                                  "images": {
-                                      "type": "string"
-                                  },
-                                  "price": {
-                                      "type": "integer"
-                                  },
-                                  "description": {
-                                      "type": "string"
-                                  },
-                                  "itemType": {
-                                      "type": "integer"
-                                  }
-                              }
-                          }
-                      }
-                  },
-                  "required": true
-              },
-              "responses": {
-                  "201": {
-                      "description": "Create successfully",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "object",
-                                  "properties": {
-                                      "id": {
-                                          "type": "string"
-                                      },
-                                      "serviceId": {
-                                          "type": "string"
-                                      },
-                                      "images": {
-                                          "type": "string"
-                                      },
-                                      "price": {
-                                          "type": "integer"
-                                      },
-                                      "description": {
-                                          "type": "string"
-                                      },
-                                      "itemType": {
-                                          "type": "integer"
-                                      },
-                                      "createdAt": {
-                                          "type": "string"
-                                      },
-                                      "updatedAt": {
-                                          "type": "string"
-                                      }
-                                  }
-                              }
-                          }
-                      }
-                  },
-                  "502": {
-                      "description": "service unavailable"
-                  }
-              },
-              "security": [
-                  {
-                      "BearerAuth": []
-                  }
-              ]
-          }
-      },
-      "/service/get-services": {
-          "get": {
-              "tags": [
-                  "service"
-              ],
-              "summary": "get service",
-              "responses": {
-                  "201": {
-                      "description": "Get successfully",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "object",
-                                  "properties": {
-                                      "id": {
-                                          "type": "string"
-                                      },
-                                      "tagName": {
-                                          "type": "string"
-                                      },
-                                      "createdAt": {
-                                          "type": "string"
-                                      },
-                                      "updatedAt": {
-                                          "type": "string"
-                                      }
-                                  }
-                              }
-                          }
-                      }
-                  },
-                  "502": {
-                      "description": "service unavailable"
-                  }
+                }
               }
-          }
-      },
-      "/service/get-service-item/{serviceId}": {
-          "get": {
-              "tags": [
-                  "service"
-              ],
-              "summary": "get service item by serviceId",
-              "parameters":[ {
-                  "name": "serviceId",
-                  "in": "path",
-                  "description": " ID of the service to retrieve",
-                  "required": true,
-                  "type": "string"
-              }],
-            
-              "produces": [
-                  "application/json"
-                ],
-                "description":"get service item by service id",
-              "responses": {
-                  "201": {
-                      "description": "Get successfully",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "object",
-                                  "properties": {
-                                      "id": {
-                                          "type": "string"
-                                      },
-                                      "serviceId": {
-                                          "type": "string"
-                                      },
-                                      "images":{
-                                          "type":"string"
-                                      },
-                                      "status":{
-                                          "type":"string"
-                                      },
-                                      "price":{
-                                          "type":"double"
-                                      },
-                                      "description":{
-                                          "type":"string"
-                                      },
-                                      "itemType":{
-                                          "type":"integer"
-                                      },
-                                      "createdAt": {
-                                          "type": "string"
-                                      },
-                                      "updatedAt": {
-                                          "type": "string"
-                                      }
-                                  }
-                              }
-                          }
-                      }
-                  },
-                  "502": {
-                      "description": "service unavailable"
-                  }
-              }
-          }
-      },
-      "/role": {
-        "post": {
-          "tags": ["Role"],
-          "summary": "Create new role",
-          "requestBody": {
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Get business by userId successfully",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "nameHost": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "fullname": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "taxNumber": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User Id is missing"
+          }
+        }
+      }
+    },
+    "/service/delete/:serviceId": {
+      "post": {
+        "tags": ["BusinessProfile"],
+        "summary": "Delete service by specific serviceId",
+        "parameters": [
+          {
+            "serviceId": "service Id need looking up"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete service successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "msg": "Found no service with provided Id"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Service Id is missing"
+          }
+        }
+      }
+    },
+    "/service/add-service": {
+      "post": {
+        "tags": ["service"],
+        "summary": "add service ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "serviceName": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "bussinessId": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "servieType": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Create successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "serviceName": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "servieType": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "service unavailable"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/service/add-service-item": {
+      "post": {
+        "tags": ["service"],
+        "summary": "add item to service",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "serviceId": {
+                    "type": "string"
+                  },
+                  "images": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "itemType": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Create successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "serviceId": {
+                      "type": "string"
+                    },
+                    "images": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "itemType": {
+                      "type": "integer"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "service unavailable"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/service/get-services": {
+      "get": {
+        "tags": ["service"],
+        "summary": "get service",
+        "responses": {
+          "201": {
+            "description": "Get successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "tagName": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "service unavailable"
+          }
+        }
+      }
+    },
+    "/service/get-service-item/{serviceId}": {
+      "get": {
+        "tags": ["service"],
+        "summary": "get service item by serviceId",
+        "parameters": [
+          {
+            "name": "serviceId",
+            "in": "path",
+            "description": " ID of the service to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+
+        "produces": ["application/json"],
+        "description": "get service item by service id",
+        "responses": {
+          "201": {
+            "description": "Get successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "serviceId": {
+                      "type": "string"
+                    },
+                    "images": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "double"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "itemType": {
+                      "type": "integer"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "service unavailable"
+          }
+        }
+      }
+    },
+    "/role": {
+      "post": {
+        "tags": ["Role"],
+        "summary": "Create new role",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roleName": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Create role successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
                     "roleName": {
                       "type": "string"
                     },
                     "description": {
                       "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
                     }
                   }
                 }
               }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Create role successfully",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "roleName": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "createdAt": {
-                        "type": "string"
-                      },
-                      "updatedAt": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid data passed!"
             }
+          },
+          "400": {
+            "description": "Invalid data passed!"
+          }
+        }
+      }
+    },
+    "/role/:roleId": {
+      "get": {
+        "tags": ["Role"],
+        "summary": "Get specific role by Id",
+        " parameters": [
+          {
+            "roleId": "role Id need looking up"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get role by Id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "roleName": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Found no role with provided Id"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/service/:businessId": {
+      "get": {
+        "tags": ["service"],
+        "summary": "Get all services of a business",
+        "route parameters": [
+          {
+            "businessId": "business Id of business needing looking up for services"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get services of business successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "serviceName": {
+                      "type": "string"
+                    },
+                    "bussinessId": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    },
+                    "serviceType": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    },
+                    "feedback": {
+                      "type": "string"
+                    },
+                    "rating": {
+                      "type": "integer"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/booking/get/{accountId}": {
+      "get": {
+        "tags": ["Booking"],
+        "summary": "Get booking by account Id",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": " ID  to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get bookings by Id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "serviceItemId":{
+                        "type":"string"
+                    },
+                    "bookingTime":{
+                      "type":"string"
+                    },
+                    "checkinDay":{
+                      "type":"string"
+                    },
+                    "checkoutDay":{
+                      "type":"string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Found no role with provided Id"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/service/get-detail-service-item-by-id/{id}": {
+      "get": {
+        "tags": ["service"],
+        "summary": "Get service item by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": " ID  to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get bookings by Id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "serviceItemId":{
+                        "type":"string"
+                    },
+                    "bookingTime":{
+                      "type":"string"
+                    },
+                    "checkinDay":{
+                      "type":"string"
+                    },
+                    "checkoutDay":{
+                      "type":"string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Found no role with provided Id"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/booking/book": {
+      "post": {
+        "tags": ["Booking"],
+        "summary": "Book an item",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  },
+                  "serviceItemId": {
+                    "type": "string"
+                  },
+                  "bookingTime": {
+                    "type": "string"
+                  },
+                  "checkinDay": {
+                    "type": "string"
+                  },
+                  "checkoutDay": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Reserve successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "serviceItemId": {
+                      "type": "string"
+                    },
+                    "bookingTime": {
+                      "type": "string"
+                    },
+                    "checkinDay": {
+                      "type": "string"
+                    },
+                    "checkoutDay": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User info is missing"
           }
         }
       },
-      "/role/:roleId": {
-        "get": {
-          "tags": ["Role"],
-          "summary": "Get specific role by Id",
-          " parameters": [
-            {
-              "roleId": "role Id need looking up"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Get role by Id successfully",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "roleName": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "createdAt": {
-                        "type": "string"
-                      },
-                      "updatedAt": {
-                        "type": "string"
-                      }
+       "/role/:roleId": {
+      "get": {
+        "tags": ["Role"],
+        "summary": "Get specific role by Id",
+        " parameters": [
+          {
+            "roleId": "role Id need looking up"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get role by Id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "roleName": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
                     }
                   }
                 }
               }
-            },
-            "400": {
-              "description": "Found no role with provided Id"
             }
           },
-          "security": [
-            {
-              "BearerAuth": []
-            }
-          ]
-        }
-      },
-      "/service/:businessId": {
+          "400": {
+            "description": "Found no role with provided Id"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+      "/service/get-service-by-type/{serviceTypeId}": {
         "get": {
           "tags": ["service"],
-          "summary": "Get all services of a business",
-          "route parameters": [
+          "summary": "get service  by serviceTypeId",
+          "parameters": [
             {
-              "businessId": "business Id of business needing looking up for services"
+              "name": "serviceTypeId",
+              "in": "path",
+              "description": " ID of the service type to retrieve",
+              "required": true,
+              "type": "string"
             }
           ],
+
+          "produces": ["application/json"],
+          "description": "get service item by service type id",
           "responses": {
-            "200": {
-              "description": "Get services of business successfully",
+            "201": {
+              "description": "Get successfully",
               "content": {
                 "application/json": {
                   "schema": {
@@ -550,14 +962,14 @@
                       "serviceName": {
                         "type": "string"
                       },
-                      "bussinessId": {
-                        "type": "string"
-                      },
                       "image": {
                         "type": "string"
                       },
+                      "bussinessId": {
+                        "type": "string"
+                      },
                       "serviceType": {
-                        "type": "integer"
+                        "type": "string"
                       },
                       "description": {
                         "type": "string"
@@ -566,10 +978,10 @@
                         "type": "string"
                       },
                       "feedback": {
-                        "type": "string"
+                        "type": "String"
                       },
                       "rating": {
-                        "type": "integer"
+                        "type": "String"
                       },
                       "createdAt": {
                         "type": "string"
@@ -582,25 +994,23 @@
                 }
               }
             },
-            "500": {
-              "description": "Internal server error."
+            "502": {
+              "description": "service unavailable"
             }
-          },
-          "security": [
-            {
-              "BearerAuth": []
-            }
-          ]
+          }
         }
       }
-  },
-  "components": {
+   
+    },
+  
+    "components": {
       "securitySchemes": {
-          "BearerAuth": {
-              "type": "http",
-              "scheme": "bearer",
-              "bearerFormat": "JWT"
-          }
+        "BearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
       }
+    }
   }
 }

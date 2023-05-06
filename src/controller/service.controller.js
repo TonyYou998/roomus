@@ -12,6 +12,16 @@ const getServiceByBusinessId = async (req, res, next) => {
     next(error);
   }
 };
+const getServiceItemByBusinessId = async (req, res, next) => {
+  try {
+    const servicesItem = await serviceService.getServiceItemByBusinessId(req);
+    res.status(200).json({
+      servicesItem,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const addService = async (req, res, next) => {
   try {
@@ -94,8 +104,31 @@ const getDetailServiceItemById = async (req, res, next) => {
     next(error);
   }
 };
+const filterService=async(req,res,next)=>{
+  try {
+    const {serviceTypeId}=req.params;
+    const dto=await serviceService.getServiceByServiceTypeId(serviceTypeId);
+  ;
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
 
+}
+
+const getDetailService=async (req,res,next)=>{
+  try {
+    const {serviceId}=req.params;
+    const dto=await serviceService.getDetailServiceById(serviceId);
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
+
+}
 module.exports = {
+  getDetailService,
+  filterService,
   addServiceType,
   addService,
   deleteService,
@@ -104,5 +137,6 @@ module.exports = {
   getServiceItems,
   getServiceByBusinessId,
   getDetailServiceItemById,
+  getServiceItemByBusinessId,
   searchBusinessService,
 };

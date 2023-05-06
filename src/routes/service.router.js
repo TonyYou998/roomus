@@ -6,19 +6,23 @@ const {
   addServiceItem,
   getServiceItems,
   getServiceByBusinessId,
+  getServiceItemByBusinessId,
   getServices,
   addServiceType,
   searchBusinessService,
+  filterService,
+  getDetailServiceItemById,
+  getDetailService,
 } = require("../controller/service.controller");
 const {
   validateAddService,
-  validateDeleteService,
   validateAddServiceItem,
   validateAddServiceType,
 } = require("../middlewares/validation/service");
 
 const { authenticate } = require("../middlewares/auth/authenticate");
 const { authorize } = require("../middlewares/auth/authorize");
+
 
 serviceRouter.post(
   "/add-service",
@@ -37,6 +41,11 @@ serviceRouter.get(
   authenticate,
   getServiceItems
 );
+serviceRouter.get(
+  "/serviceItems/:businessId",
+  authenticate,
+  getServiceItemByBusinessId
+);
 serviceRouter.get("/search", authenticate, searchBusinessService);
 serviceRouter.post(
   "/add-service-type",
@@ -51,12 +60,16 @@ serviceRouter.post(
   validateAddServiceItem,
   addServiceItem
 );
-serviceRouter.get("/get-services", authenticate, authorize([2]), getServices);
+serviceRouter.get("/get-services", getServices);
+
 serviceRouter.get(
   "/business/:businessId",
   authenticate,
   authorize([2]),
   getServiceByBusinessId
 );
+serviceRouter.get("/get-service-by-type/:serviceTypeId",filterService);
+serviceRouter.get("/get-detail-service-item-by-id/:id",getDetailServiceItemById);
+serviceRouter.get("/get-detail-service-by-id/:serviceId",getDetailService);
 
 module.exports = { serviceRouter };
