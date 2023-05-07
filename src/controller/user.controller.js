@@ -45,4 +45,14 @@ const deleteProfile = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login, deleteProfile };
+const userProfile = async (req, res, next) => {
+  try {
+    const { user } = await service.userProfile(req);
+    res.json({
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+module.exports = { register, login, deleteProfile, userProfile };

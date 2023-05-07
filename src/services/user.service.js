@@ -3,6 +3,14 @@ const { v4: uuidv4 } = require("uuid");
 const { ROLE } = require("../utils/constants/role");
 const bcrypt = require("bcryptjs");
 
+const userProfile = async (req, res, next) => {
+  try {
+    return { user: req.user };
+  } catch (error) {
+    next(error);
+  }
+};
+
 const register = async (req) => {
   try {
     const { email, password, username, fullname, phone } = req.body;
@@ -54,4 +62,4 @@ const deleteProfile = async (req) => {
     throw error;
   }
 };
-module.exports = { register, login, deleteProfile };
+module.exports = { userProfile, register, login, deleteProfile };
