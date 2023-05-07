@@ -21,7 +21,7 @@ const createBusiness = async (req) => {
       address,
       description,
       taxNumber,
-      userId,
+      userId: req.user.id || userId,
     });
 
     return {

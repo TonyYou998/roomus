@@ -11,10 +11,9 @@ const createBusiness = async (req, res, next) => {
         422
       );
 
-    const { user, token } = await service.createBusiness(req);
+    const { newBusiness } = await service.createBusiness(req);
     res.status(201).json({
-      user,
-      token,
+      business: newBusiness,
     });
   } catch (error) {
     next(error);
