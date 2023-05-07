@@ -28,6 +28,7 @@ const { authorize } = require("../middlewares/auth/authorize");
 serviceRouter.post(
   "/add-service",
   authenticate,
+  authorize([2]),
   validateAddService,
   addService
 );
@@ -64,13 +65,21 @@ serviceRouter.post(
 serviceRouter.post(
   "/add-service-item",
   authenticate,
+  authorize([2]),
   validateAddServiceItem,
   addServiceItem
 );
 serviceRouter.patch(
   "/update-service-item/:serviceItemId",
   authenticate,
+  authorize([2]),
   validateAddServiceItem,
+  updateServiceItem
+);
+serviceRouter.delete(
+  "/delete-service-item/:serviceItemId",
+  authenticate,
+  authorize([2]),
   updateServiceItem
 );
 serviceRouter.get("/get-services", getServices);

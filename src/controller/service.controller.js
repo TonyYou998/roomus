@@ -47,6 +47,17 @@ const updateServiceItem = async (req, res, next) => {
     next(error);
   }
 };
+const deleteServiceItem = async (req, res, next) => {
+  try {
+    if (!req.params.serviceItemId)
+      throw new HttpError(`Require service item Id`, 422);
+    const dto = await serviceService.deleteServiceItem(req);
+
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
+};
 
 const deleteService = async (req, res, next) => {
   try {
@@ -151,10 +162,11 @@ const getDetailService = async (req, res, next) => {
 module.exports = {
   getDetailService,
   filterService,
-  addServiceType,
   addService,
-  updateServiceItem,
   deleteService,
+  addServiceType,
+  updateServiceItem,
+  deleteServiceItem,
   getServices,
   addServiceItem,
   getServiceItems,
