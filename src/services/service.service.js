@@ -132,11 +132,33 @@ const deleteService = async (request) => {
     const deleteService = await Service.destroy({
       where: { id: serviceId, bussinessId: business.id },
     });
-    console.log(deleteService);
 
     if (!deleteService) return { msg: "Found no service with provided Id" };
 
     return { msg: "Deleted service successfully" };
+  } catch (error) {
+    throw error;
+  }
+};
+const deleteServiceItem = async (request) => {
+  try {
+    const business = await BussinessProfile.findOne({
+      where: { userId: request.user.id },
+    });
+    if (!business)
+      throw new HttpError(
+        "No business found with this user. Unable to delete service item."
+      );
+
+    const serviceItemId = request.params.serviceItemId;
+    const deleteServiceItem = await ServiceItem.destroy({
+      where: { id: serviceItemId },
+    });
+
+    if (!deleteServiceItem)
+      return { msg: "Found no service item with provided Id" };
+
+    return { msg: "Deleted service item successfully" };
   } catch (error) {
     throw error;
   }
@@ -216,7 +238,6 @@ const searchBusinessService = async (request) => {
 
 const getServices = async () => {
   try {
-    console.log("run get service");
     const services = await Service.findAll();
     return services;
   } catch (error) {
@@ -271,6 +292,7 @@ const getServiceByServiceTypeId = async (serviceTypeId) => {
 
 module.exports = {
   deleteService,
+  deleteServiceItem,
   deleteByServiceType,
   searchBusinessService,
   getDetailItemById,

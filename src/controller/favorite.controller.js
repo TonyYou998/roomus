@@ -14,4 +14,15 @@ const addFavorite = async (req, res, next) => {
   }
 };
 
-module.exports = { addFavorite };
+const deleteFavorite = async (req, res, next) => {
+  try {
+    if (!req.params.favoriteId)
+      throw new HttpError(`Require favorite ID.`, 400);
+    const dto = await service.deleteFavorite(req);
+    res.status(200).send(dto);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { addFavorite, deleteFavorite };

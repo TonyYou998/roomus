@@ -20,6 +20,22 @@ const addFavorite = async (request) => {
   }
 };
 
+const deleteFavorite = async (request) => {
+  try {
+    const favoriteId = request.params.favoriteId;
+    const deleteFavorite = await Favorite.destroy({
+      where: { id: favoriteId },
+    });
+
+    if (!deleteFavorite) return { msg: "Found no favorite with provided Id" };
+
+    return { msg: "Removed favorite successfully" };
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   addFavorite,
+  deleteFavorite,
 };

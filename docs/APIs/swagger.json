@@ -258,8 +258,37 @@
         }
       }
     },
+    "/service/delete-service-item/:serviceItemId": {
+      "delete": {
+        "tags": ["serviceitem"],
+        "summary": "Delete service item by specific serviceItemId",
+        "parameters": [
+          {
+            "serviceItemId": "service item Id need looking up"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete service item successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "msg": "Deleted service item successfully"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Service item Id is missing"
+          }
+        }
+      }
+    },
     "/service/delete-by-servicetype/:serviceTypeId": {
-      "post": {
+      "delete": {
         "tags": ["Service"],
         "summary": "Delete service by service type",
         "parameters": [
@@ -1132,7 +1161,107 @@
         }
       }
     },
-
+    "/favorite/add": {
+      "post": {
+        "tags": ["favorite"],
+        "summary": "add favorite",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "serviceId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Create favorite successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "serviceId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Require userId and serviceId"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/favorite/:favoriteId": {
+      "delete": {
+        "tags": ["favorite"],
+        "summary": "Delete favorite",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "favoriteId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Remove favorite successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "msg": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Require favoriteId"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "components": {
       "securitySchemes": {
         "BearerAuth": {
