@@ -5,6 +5,7 @@ const {
   updateServiceItem,
   deleteService,
   deleteServiceByServiceType,
+  deleteServiceItem,
   addServiceItem,
   getServiceItems,
   getServiceByBusinessId,
@@ -80,7 +81,7 @@ serviceRouter.delete(
   "/delete-service-item/:serviceItemId",
   authenticate,
   authorize([2]),
-  updateServiceItem
+  deleteServiceItem
 );
 serviceRouter.get("/get-services", getServices);
 
