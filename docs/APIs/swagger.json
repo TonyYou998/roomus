@@ -25,6 +25,50 @@
   ],
   "tags": [],
   "paths": {
+    "/user/profile": {
+      "get": {
+        "tags": ["UserAccount"],
+        "summary": "Get user profile",
+        "responses": {
+          "200": {
+            "description": "Get user profile successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "fullname": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "integer"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You are not authenticated."
+          }
+        }
+      }
+    },
     "/user/register": {
       "post": {
         "tags": ["UserAccount"],
@@ -1216,7 +1260,7 @@
         ]
       }
     },
-    "/favorite/:favoriteId": {
+    "/favorite/:serviceId": {
       "delete": {
         "tags": ["favorite"],
         "summary": "Delete favorite",
@@ -1226,7 +1270,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "favoriteId": {
+                  "serviceId": {
                     "type": "string"
                   }
                 }
@@ -1253,6 +1297,37 @@
           },
           "400": {
             "description": "Require favoriteId"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/favorite/list": {
+      "get": {
+        "tags": ["favorite"],
+        "summary": "Get list of favorite",
+        "responses": {
+          "200": {
+            "description": "Get list of favorite successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "favorites": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Found no favorites in wishlist"
           }
         },
         "security": [

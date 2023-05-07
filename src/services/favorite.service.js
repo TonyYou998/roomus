@@ -1,6 +1,17 @@
 const { v4: uuidv4 } = require("uuid");
 const { Favorite } = require("../models");
 
+const getFavorite = async (request) => {
+  try {
+    const favorites = await Favorite.findAll({
+      where: { userId: request.user.id },
+    });
+    return favorites;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const addFavorite = async (request) => {
   const { userId, serviceId } = request.body;
   try {
@@ -22,12 +33,13 @@ const addFavorite = async (request) => {
 
 const deleteFavorite = async (request) => {
   try {
-    const favoriteId = request.params.favoriteId;
+    const serviceId = request.params.serviceId;
     const deleteFavorite = await Favorite.destroy({
-      where: { id: favoriteId },
+      where: { serviceId },
     });
 
-    if (!deleteFavorite) return { msg: "Found no favorite with provided Id" };
+    if (!deleteFavorite)
+      return { msg: "Found no favorite with provided service Id" };
 
     return { msg: "Removed favorite successfully" };
   } catch (error) {
@@ -36,6 +48,7 @@ const deleteFavorite = async (request) => {
 };
 
 module.exports = {
+  getFavorite,
   addFavorite,
   deleteFavorite,
 };

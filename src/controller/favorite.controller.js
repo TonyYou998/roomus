@@ -2,6 +2,15 @@ const service = require("../services/favorite.service");
 const { validationResult } = require("express-validator");
 const HttpError = require("../utils/error");
 
+const getFavorite = async (req, res, next) => {
+  try {
+    const favorites = await service.getFavorite(req);
+    res.status(200).send({ favorites });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const addFavorite = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -16,8 +25,7 @@ const addFavorite = async (req, res, next) => {
 
 const deleteFavorite = async (req, res, next) => {
   try {
-    if (!req.params.favoriteId)
-      throw new HttpError(`Require favorite ID.`, 400);
+    if (!req.params.serviceId) throw new HttpError(`Require service ID.`, 400);
     const dto = await service.deleteFavorite(req);
     res.status(200).send(dto);
   } catch (error) {
@@ -25,4 +33,4 @@ const deleteFavorite = async (req, res, next) => {
   }
 };
 
-module.exports = { addFavorite, deleteFavorite };
+module.exports = { getFavorite, addFavorite, deleteFavorite };
